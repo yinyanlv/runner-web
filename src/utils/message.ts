@@ -9,4 +9,4 @@ export const ERROR_MESSAGE = {
   confirmPasswordRegex: '确认密码只能由字母和数字组成，且不能超过11位',
   passwordNotEqual: '确认密码和密码不一致',
   loginInvalid: '您输入的用户名或密码有误！'
-}
+};

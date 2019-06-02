@@ -1,5 +1,6 @@
 import React from 'react';
 import './Main.scss';
+import PageHome from "../../pages/Home/Home";
 
 export default function Main() {
 
@@ -12,7 +13,7 @@ export default function Main() {
                         <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
                     </div>
                 </div>
-                {/*<slot></slot>*/}
+                <PageHome/>
             </div>
         </section>
     );

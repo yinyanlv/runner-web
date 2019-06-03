@@ -6,10 +6,13 @@ import Footer from "../components/Footer/Footer";
 export default function Layout1() {
 
     return (
-        <div>
-            <Header />
-            <Main />
-            <Footer />
-        </div>
+        <>
+            <Header/>
+            <Main/>
+            <Footer/>
+            <div className="back-to-top" id="back-to-top">
+                <span>回到顶部</span>
+            </div>
+        </>
     );
 }

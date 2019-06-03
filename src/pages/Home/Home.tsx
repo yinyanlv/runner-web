@@ -15,7 +15,7 @@ export default function PageHome() {
                     <div className="panel-content">
                         <div v-for="(topic, index) in topics" className="topic">
                             <div className="avatar">
-                                <a href={"/"}><img src="/static/images/avatar.jpg"/></a>
+                                <a href={"/"}><img src="static/images/avatars/avatar.jpg"/></a>
                             </div>
                             <div className="info">
                                 <dl>
@@ -32,7 +32,7 @@ export default function PageHome() {
                                             className="view-count">topic.viewCount</i> 次浏览</span>
 
                                         <span className="item right">最后由 <a href={"/"}>
-                                          <img src="/static/images/avatar.jpg"/> username</a> 回复于
+                                          <img src="static/images/avatars/avatar.jpg"/> username</a> 回复于
                                   <span className="datetime-ago">5 个月前</span>
                   </span>
                                     </dd>

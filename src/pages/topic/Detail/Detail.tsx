@@ -44,7 +44,7 @@ export default function PageTopicDetail() {
                     <div className="panel-content">
                         <div className="comment" v-for="(comment, index) in comments">
                             <div className="avatar">
-                                <a href={""}><img src="/static/images/avatar.jpg"/></a>
+                                <a href={""}><img src="static/images/avatars/avatar.jpg"/></a>
                             </div>
                             <div className="info">
                                 <dl>

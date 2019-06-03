@@ -9,7 +9,7 @@ export default function Footer() {
                     <a href="/about">关于本站</a>
                     <a href="https://github.com/ruster-xyz/ruster.git" target="_blank" rel="nofollow">本站源码地址</a>
                 </div>
-                <div className="site-info">Ruster，一个 Rust 语言的中文社区，致力于 Rust 的技术研究与发展。</div>
+                <div className="site-info">Runner，一个 Rust 语言的中文社区，致力于 Rust 的技术研究与发展。</div>
             </div>
         </footer>
     );

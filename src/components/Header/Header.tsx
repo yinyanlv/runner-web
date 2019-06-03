@@ -7,8 +7,8 @@ export default function Header() {
             <header className="frame-header">
                 <div className="frame-wrapper">
                     <div className="header-left">
-                        <a className="logo" href="/"><img src="../assets/images/logo.png"/>
-                            <span className="site-name">Ruster</span>
+                        <a className="logo" href="/">
+                            <img src="static/images/logo.png"/>
                         </a>
                         <nav>
                             <a className="active" href={"/"}>首页</a>
@@ -40,7 +40,7 @@ export default function Header() {
                     <a className="btn" href={"/login"}>登录</a>
                 </div>
                 <div className="title">
-                    <a href={"/"}><img src="../assets/images/logo.png"/></a>
+                    <a href={"/"}><img src="static/images/logo_short.png"/></a>
                 </div>
             </header>
 

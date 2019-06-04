@@ -1,15 +1,20 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
+import history from './history';
 import './mock';
 import './App.scss';
 import Layout1 from './layouts/Layout1';
+import PageError from './pages/Error/Error';
 
 const App: React.FC = () => {
 
   return (
-      <BrowserRouter>
-        <Layout1/>
-      </BrowserRouter>
+      <Router history={history}>
+        <Switch>
+            <Route path={"/"} component={Layout1} />
+            <Route component={PageError} />
+        </Switch>
+      </Router>
   );
 };
 

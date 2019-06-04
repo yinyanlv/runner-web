@@ -9,7 +9,6 @@ const App: React.FC = () => {
   return (
       <BrowserRouter>
         <Layout1/>
-
       </BrowserRouter>
   );
 };

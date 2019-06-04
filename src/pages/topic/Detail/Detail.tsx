@@ -1,6 +1,6 @@
 import React from 'react';
 import './Detail.scss';
-import Aside from "../../../components/Aside/Aside";
+import Aside from '../../../components/Aside/Aside';
 
 export default function PageTopicDetail() {
     return (

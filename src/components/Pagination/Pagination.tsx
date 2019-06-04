@@ -1,7 +1,7 @@
 import React from 'react';
 import './Pagination.scss';
 
-const RECORDS_COUNT_PER_PAGE = 7;
+const RECORDS_COUNT_PER_PAGE = 20;
 
 function buildPagination(config = {
     currentPage: 1,

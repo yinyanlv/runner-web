@@ -1,0 +1,23 @@
+@import "styles/scss/sdk/index";
+
+.frame-content {
+  padding: 6.5rem 0 0;
+  width: 100%;
+
+  .block-main {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+  }
+}
+
+@include mobile() {
+  .frame-content {
+    padding: 4.5rem 0 0;
+
+    .block-main {
+      width: 100%;
+      display: block;
+    }
+  }
+}

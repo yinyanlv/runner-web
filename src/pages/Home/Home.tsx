@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Pagination from "../../components/Pagination/Pagination";
-import Aside from "../../components/Aside/Aside";
 import axios from 'axios';
+import Pagination from '../../components/Pagination/Pagination';
 
 export default function PageHome() {
 
@@ -12,7 +11,7 @@ export default function PageHome() {
     });
 
     return (
-        <React.Fragment>
+        <>
             <div className="panel-header">
                 <div className="tabs">
                     <a href={"/"}>item.categoryNameCn</a>
@@ -53,6 +52,6 @@ export default function PageHome() {
             <div className="panel-footer">
                 <Pagination/>
             </div>
-        </React.Fragment>
+        </>
     );
 }

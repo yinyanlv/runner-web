@@ -2,10 +2,10 @@ import React, {ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './Login.scss';
-import Crumbs from "../../components/Crumbs/Crumbs";
+import Crumbs from '../../components/Crumbs/Crumbs';
 import history from '../../history';
 
-class PageLogin extends React.Component {
+class PageLogin extends React.PureComponent {
 
     state = {
         username: '',
@@ -104,7 +104,7 @@ class PageLogin extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <>
                 <div className="panel-header">
                     <Crumbs/>
                 </div>
@@ -148,7 +148,7 @@ class PageLogin extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

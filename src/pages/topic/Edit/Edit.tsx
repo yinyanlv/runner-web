@@ -1,7 +1,7 @@
 import React from 'react';
 import './Edit.scss';
-import Aside from "../../../components/Aside/Aside";
-import Crumbs from "../../../components/Crumbs/Crumbs";
+import Aside from '../../../components/Aside/Aside';
+import Crumbs from '../../../components/Crumbs/Crumbs';
 
 export default function PageTopicEdit() {
     return (

@@ -1,10 +1,12 @@
 import React, {ChangeEvent} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import clsx from 'clsx';
 import './Login.scss';
 import Crumbs from '../../components/Crumbs/Crumbs';
 import history from '../../history';
+import {LOGIN} from './actions';
 
 class PageLogin extends React.PureComponent {
 
@@ -25,6 +27,15 @@ class PageLogin extends React.PureComponent {
     constructor(props: any) {
         super(props);
     }
+
+    componentDidMount(): void {
+        let props: any = this.props;
+
+        setTimeout(() => {
+            props.login({test: 333});
+        }, 3000);
+    }
+
 
     handleUsernameChange = (e: ChangeEvent) => {
         const value = (e.target as any).value;
@@ -178,4 +189,19 @@ class PageLogin extends React.PureComponent {
     }
 }
 
-export default PageLogin;
+function mapStateToProps(state: any) {
+    console.log('----------');
+    console.log(state);
+    return {
+        state
+    };
+}
+
+const mapDispatchToProps = {
+    login: (data: any) => ({
+        type: LOGIN,
+        data
+    })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageLogin);

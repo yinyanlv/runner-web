@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import clsx from 'clsx';
 import './Login.scss';
 import Crumbs from '../../components/Crumbs/Crumbs';
 import history from '../../history';
@@ -8,8 +9,14 @@ import history from '../../history';
 class PageLogin extends React.PureComponent {
 
     state = {
-        username: '',
-        password: '',
+        username: {
+            value: '',
+            invalid: false
+        },
+        password: {
+            value: '',
+            invalid: false
+        },
         errorMessage: '',
         isLogin: false,
         isGithubLogin: false
@@ -23,7 +30,9 @@ class PageLogin extends React.PureComponent {
         const value = (e.target as any).value;
 
         this.setState({
-            username: value
+            username: {
+                value: value
+            }
         });
     };
 
@@ -31,7 +40,9 @@ class PageLogin extends React.PureComponent {
         const value = (e.target as any).value;
 
         this.setState({
-            password: value
+            password: {
+                value: value
+            }
         });
     };
 
@@ -43,14 +54,18 @@ class PageLogin extends React.PureComponent {
 
     doLogin = () => {
 
+        if (this.state.isLogin) {
+            return;
+        }
+
         if (this.checkValid()) {
             this.setState({
                 isLogin: true
             });
 
             axios.post('/api/login', {
-                username: this.state.username,
-                password: this.state.password
+                username: this.state.username.value,
+                password: this.state.password.value
             }).then((res) => {
                 this.setState({
                     isLogin: false
@@ -71,6 +86,10 @@ class PageLogin extends React.PureComponent {
 
     doGithubLogin = () => {
 
+        if (this.state.isGithubLogin) {
+            return;
+        }
+
         if (this.checkValid()) {
             this.setState({
                 isGithubLogin: true
@@ -80,16 +99,22 @@ class PageLogin extends React.PureComponent {
 
     checkValid = (): boolean => {
 
-        if (!this.state.username) {
+        if (!this.state.username.value) {
 
             this.setState({
+                username: {
+                    invalid: true
+                },
                 errorMessage: '用户名不能为空'
             });
             return false;
         }
 
-        if (!this.state.password) {
+        if (!this.state.password.value) {
             this.setState({
+                password: {
+                    invalid: true
+                },
                 errorMessage: '密码不能为空'
             });
             return false;
@@ -113,8 +138,8 @@ class PageLogin extends React.PureComponent {
                         <div className="input-line">
                             <label><span className="required">*</span>用户名：</label>
                             <div className="input-wrapper">
-                                <input type="text" name="username"
-                                       value={this.state.username}
+                                <input type="text" name="username" className={clsx({"error": this.state.username.invalid})}
+                                       value={this.state.username.value || ''}
                                        onChange={this.handleUsernameChange}
                                        onKeyUp={this.handleKeyUp}/>
                             </div>
@@ -122,8 +147,8 @@ class PageLogin extends React.PureComponent {
                         <div className="input-line">
                             <label><span className="required">*</span>密码：</label>
                             <div className="input-wrapper">
-                                <input type="password" name="password" autoComplete="off"
-                                       value={this.state.password}
+                                <input type="password" name="password" autoComplete="off" className={clsx({"error": this.state.password.invalid})}
+                                       value={this.state.password.value || ''}
                                        onChange={this.handlePasswordChange}
                                        onKeyUp={this.handleKeyUp}/>
                             </div>
@@ -142,8 +167,8 @@ class PageLogin extends React.PureComponent {
                         }
                         <div className="btn-line">
                             <div className="btn-wrapper">
-                                <a href="javascript:;" className="btn btn-primary" onClick={this.doLogin}>登录</a>
-                                <a href="javascript:;" className="btn btn-primary" onClick={this.doGithubLogin}>通过 Github 登录</a>
+                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": this.state.isLogin})} onClick={this.doLogin}>登录</a>
+                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": this.state.isGithubLogin})} onClick={this.doGithubLogin}>通过 Github 登录</a>
                             </div>
                         </div>
                     </div>

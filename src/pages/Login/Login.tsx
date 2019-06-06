@@ -6,56 +6,20 @@ import clsx from 'clsx';
 import './Login.scss';
 import Crumbs from '../../components/Crumbs/Crumbs';
 import history from '../../history';
-import {LOGIN} from './actions';
+import {submitLogin, LOGIN_INPUT_PASSWORD, LOGIN_INPUT_USERNAME} from './actions';
 
-class PageLogin extends React.PureComponent {
+interface LoginProps {
+    login: any;
+    handleUsernameChange: any;
+    handlePasswordChange: any;
+    submitLogin: any;
+}
 
-    state = {
-        username: {
-            value: '',
-            invalid: false
-        },
-        password: {
-            value: '',
-            invalid: false
-        },
-        errorMessage: '',
-        isLogin: false,
-        isGithubLogin: false
-    };
+class PageLogin extends React.PureComponent<LoginProps> {
 
     constructor(props: any) {
         super(props);
     }
-
-    componentDidMount(): void {
-        let props: any = this.props;
-
-        setTimeout(() => {
-            props.login({test: 333});
-        }, 3000);
-    }
-
-
-    handleUsernameChange = (e: ChangeEvent) => {
-        const value = (e.target as any).value;
-
-        this.setState({
-            username: {
-                value: value
-            }
-        });
-    };
-
-    handlePasswordChange = (e: ChangeEvent) => {
-        const value = (e.target as any).value;
-
-        this.setState({
-            password: {
-                value: value
-            }
-        });
-    };
 
     handleKeyUp = (e: any) => {
         if (e.keyCode === 13) {
@@ -65,52 +29,29 @@ class PageLogin extends React.PureComponent {
 
     doLogin = () => {
 
-        if (this.state.isLogin) {
+        if (this.props.login.isLogin) {
             return;
         }
 
         if (this.checkValid()) {
-            this.setState({
-                isLogin: true
-            });
-
-            axios.post('/api/login', {
-                username: this.state.username.value,
-                password: this.state.password.value
-            }).then((res) => {
-                this.setState({
-                    isLogin: false
-                });
-                if (res.data.success) {
-                    this.setState({
-                        errorMessage: ''
-                    });
-                    history.push('/');
-                } else {
-                    this.setState({
-                        errorMessage: res.data.message
-                    });
-                }
+            this.props.submitLogin({
+                username: this.props.login.username,
+                password: this.props.login.password
             });
         }
     };
 
     doGithubLogin = () => {
 
-        if (this.state.isGithubLogin) {
+        if (this.props.login.isGithubLogin) {
             return;
-        }
-
-        if (this.checkValid()) {
-            this.setState({
-                isGithubLogin: true
-            });
         }
     };
 
     checkValid = (): boolean => {
+        const loginState = this.props.login;
 
-        if (!this.state.username.value) {
+        if (!loginState.username.value) {
 
             this.setState({
                 username: {
@@ -121,7 +62,7 @@ class PageLogin extends React.PureComponent {
             return false;
         }
 
-        if (!this.state.password.value) {
+        if (!loginState.password.value) {
             this.setState({
                 password: {
                     invalid: true
@@ -139,6 +80,8 @@ class PageLogin extends React.PureComponent {
     };
 
     render() {
+        const loginState = this.props.login;
+
         return (
             <>
                 <div className="panel-header">
@@ -149,18 +92,18 @@ class PageLogin extends React.PureComponent {
                         <div className="input-line">
                             <label><span className="required">*</span>用户名：</label>
                             <div className="input-wrapper">
-                                <input type="text" name="username" className={clsx({"error": this.state.username.invalid})}
-                                       value={this.state.username.value || ''}
-                                       onChange={this.handleUsernameChange}
+                                <input type="text" name="username" className={clsx({"error": loginState.username.invalid})}
+                                       value={loginState.username.value || ''}
+                                       onChange={this.props.handleUsernameChange}
                                        onKeyUp={this.handleKeyUp}/>
                             </div>
                         </div>
                         <div className="input-line">
                             <label><span className="required">*</span>密码：</label>
                             <div className="input-wrapper">
-                                <input type="password" name="password" autoComplete="off" className={clsx({"error": this.state.password.invalid})}
-                                       value={this.state.password.value || ''}
-                                       onChange={this.handlePasswordChange}
+                                <input type="password" name="password" autoComplete="off" className={clsx({"error": loginState.password.invalid})}
+                                       value={loginState.password.value || ''}
+                                       onChange={this.props.handlePasswordChange}
                                        onKeyUp={this.handleKeyUp}/>
                             </div>
                         </div>
@@ -170,16 +113,16 @@ class PageLogin extends React.PureComponent {
                             </div>
                         </div>
                         {
-                            this.state.errorMessage && <div className="error-line">
+                            loginState.errorMessage && <div className="error-line">
                                 <div className="error-wrapper">
-                                    <i className="fa fa-exclamation-circle"></i> <span>{this.state.errorMessage}</span>
+                                    <i className="fa fa-exclamation-circle"></i> <span>{loginState.errorMessage}</span>
                                 </div>
                             </div>
                         }
                         <div className="btn-line">
                             <div className="btn-wrapper">
-                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": this.state.isLogin})} onClick={this.doLogin}>登录</a>
-                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": this.state.isGithubLogin})} onClick={this.doGithubLogin}>通过 Github 登录</a>
+                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": loginState.isLogin})} onClick={this.doLogin}>登录</a>
+                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogin})} onClick={this.doGithubLogin}>通过 Github 登录</a>
                             </div>
                         </div>
                     </div>
@@ -189,19 +132,36 @@ class PageLogin extends React.PureComponent {
     }
 }
 
-function mapStateToProps(state: any) {
-    console.log('----------');
-    console.log(state);
+function mapStateToProps({login}) {
     return {
-        state
+        login
     };
 }
 
-const mapDispatchToProps = {
-    login: (data: any) => ({
-        type: LOGIN,
-        data
-    })
-};
+function mapDispatchToProps(dispatch) {
+
+    return {
+        handleUsernameChange: (e: ChangeEvent) => {
+            const data = (e.target as any).value;
+
+            dispatch({
+                type: LOGIN_INPUT_USERNAME,
+                payload: data
+            });
+        },
+
+        handlePasswordChange: (e: ChangeEvent) => {
+            const data = (e.target as any).value;
+
+            dispatch({
+                type: LOGIN_INPUT_PASSWORD,
+                payload: data
+            });
+        },
+
+        submitLogin: submitLogin
+    };
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageLogin);

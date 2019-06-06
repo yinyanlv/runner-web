@@ -22,7 +22,7 @@ function buildPagination(config = {
     let isShowNextEllipsis = true;
     let isFirstPageDisabled = false;
     let isLastPageDisabled = false;
-    let pageList = [];
+    let pageList: any = [];
 
     if (pageCount < 6) {
         isShowPrevEllipsis = false;

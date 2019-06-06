@@ -21,20 +21,20 @@ function login(state: any = initialState, action: any) {
             return {
                 ...state,
                 username: {
-                    value: action.paylod
+                    value: action.payload
                 }
             };
         case actions.LOGIN_INPUT_PASSWORD:
             return {
                 ...state,
                 password: {
-                    value: action.paylod
+                    value: action.payload
                 }
             };
-        case actions.LOGIN_STATUS:
+        case actions.LOGIN_LOGINNING:
             return {
                 ...state,
-                isLogin: action.paylod
+                isLogin: action.payload
             };
         case actions.LOGIN_SUCCESS:
             return {
@@ -44,7 +44,7 @@ function login(state: any = initialState, action: any) {
         case actions.LOGIN_ERROR:
             return {
                 ...state,
-                errorMessage: action.paylod
+                ...action.payload
             };
         default:
             return state;

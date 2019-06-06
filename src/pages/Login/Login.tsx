@@ -1,18 +1,18 @@
 import React, {ChangeEvent} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import clsx from 'clsx';
 import './Login.scss';
 import Crumbs from '../../components/Crumbs/Crumbs';
-import history from '../../history';
-import {submitLogin, LOGIN_INPUT_PASSWORD, LOGIN_INPUT_USERNAME} from './actions';
+import * as actions from './actions';
 
 interface LoginProps {
     login: any;
     handleUsernameChange: any;
     handlePasswordChange: any;
     submitLogin: any;
+    setError: any;
 }
 
 class PageLogin extends React.PureComponent<LoginProps> {
@@ -35,8 +35,8 @@ class PageLogin extends React.PureComponent<LoginProps> {
 
         if (this.checkValid()) {
             this.props.submitLogin({
-                username: this.props.login.username,
-                password: this.props.login.password
+                username: this.props.login.username.value,
+                password: this.props.login.password.value
             });
         }
     };
@@ -53,7 +53,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
 
         if (!loginState.username.value) {
 
-            this.setState({
+            this.props.setError({
                 username: {
                     invalid: true
                 },
@@ -63,7 +63,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
         }
 
         if (!loginState.password.value) {
-            this.setState({
+            this.props.setError({
                 password: {
                     invalid: true
                 },
@@ -72,7 +72,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
             return false;
         }
 
-        this.setState({
+        this.props.setError({
             errorMessage: ''
         });
 
@@ -92,7 +92,8 @@ class PageLogin extends React.PureComponent<LoginProps> {
                         <div className="input-line">
                             <label><span className="required">*</span>用户名：</label>
                             <div className="input-wrapper">
-                                <input type="text" name="username" className={clsx({"error": loginState.username.invalid})}
+                                <input type="text" name="username"
+                                       className={clsx({"error": loginState.username.invalid})}
                                        value={loginState.username.value || ''}
                                        onChange={this.props.handleUsernameChange}
                                        onKeyUp={this.handleKeyUp}/>
@@ -101,7 +102,8 @@ class PageLogin extends React.PureComponent<LoginProps> {
                         <div className="input-line">
                             <label><span className="required">*</span>密码：</label>
                             <div className="input-wrapper">
-                                <input type="password" name="password" autoComplete="off" className={clsx({"error": loginState.password.invalid})}
+                                <input type="password" name="password" autoComplete="off"
+                                       className={clsx({"error": loginState.password.invalid})}
                                        value={loginState.password.value || ''}
                                        onChange={this.props.handlePasswordChange}
                                        onKeyUp={this.handleKeyUp}/>
@@ -121,8 +123,12 @@ class PageLogin extends React.PureComponent<LoginProps> {
                         }
                         <div className="btn-line">
                             <div className="btn-wrapper">
-                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": loginState.isLogin})} onClick={this.doLogin}>登录</a>
-                                <a href="javascript:;" className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogin})} onClick={this.doGithubLogin}>通过 Github 登录</a>
+                                <a href="javascript:;"
+                                   className={clsx("btn btn-primary", {"disabled": loginState.isLogin})}
+                                   onClick={this.doLogin}>登录</a>
+                                <a href="javascript:;"
+                                   className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogin})}
+                                   onClick={this.doGithubLogin}>通过 Github 登录</a>
                             </div>
                         </div>
                     </div>
@@ -133,6 +139,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
 }
 
 function mapStateToProps({login}) {
+
     return {
         login
     };
@@ -140,27 +147,35 @@ function mapStateToProps({login}) {
 
 function mapDispatchToProps(dispatch) {
 
-    return {
+    return bindActionCreators({
         handleUsernameChange: (e: ChangeEvent) => {
             const data = (e.target as any).value;
 
-            dispatch({
-                type: LOGIN_INPUT_USERNAME,
+            return {
+                type: actions.LOGIN_INPUT_USERNAME,
                 payload: data
-            });
+            };
         },
 
         handlePasswordChange: (e: ChangeEvent) => {
             const data = (e.target as any).value;
 
-            dispatch({
-                type: LOGIN_INPUT_PASSWORD,
+            return {
+                type: actions.LOGIN_INPUT_PASSWORD,
                 payload: data
-            });
+            };
         },
 
-        submitLogin: submitLogin
-    };
+        submitLogin: actions.submitLogin,
+
+        setError: (data) => {
+
+            return {
+                type: actions.LOGIN_ERROR,
+                payload: data
+            };
+        }
+    }, dispatch);
 }
 
 

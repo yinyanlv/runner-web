@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import {Link} from 'react-router-dom';
+import clsx from 'clsx';
 import './Pagination.scss';
 
 const RECORDS_COUNT_PER_PAGE = 20;
@@ -114,15 +116,53 @@ function buildPagination(config = {
     };
 }
 
-export default function Pagination() {
+class Pagination extends PureComponent{
 
-    return (
-        <div className="pagination">
-            <a className="first disabled" href="pagination.firstPage">«</a>
-            <a className="ellipsis">...</a>
-            <a href={"item.page"} className="active">item.page</a>
-            <a className="ellipsis">...</a>
-            <a className="last" href="pagination.lastPage">»</a>
-        </div>
-    );
+    state = buildPagination({
+        total: 500,
+        currentPage: 1,
+        baseUrl: ''
+    });
+
+    handleClick = (config) => {
+
+        const state = buildPagination({
+            total: 500,
+            currentPage: config.page,
+            baseUrl: ''
+        });
+
+        this.setState(state);
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        return (
+            <div className="pagination">
+                <Link className={clsx('first', {disabled: this.state.isFirstPageDisabled})} to={""} onClick={() => {
+                    this.handleClick({page: this.state.firstPage})
+                }}>«</Link>
+                {
+                    this.state.isShowPrevEllipsis && <a className="ellipsis">...</a>
+                }
+                {this.state.pageList.map((item) => {
+                    return <Link to={""} key={item.page} className={clsx({active: item.isActive})} onClick={() => {
+                        this.handleClick({page: item.page})
+                    }}>{item.page}</Link>;
+                })}
+                {
+                    this.state.isShowNextEllipsis && <a className="ellipsis">...</a>
+                }
+                <Link className={clsx('last', {disabled: this.state.isLastPageDisabled})} to={""} onClick={() => {
+                    this.handleClick({page: this.state.lastPage})
+                }}>»</Link>
+            </div>
+        );
+    }
 }
+
+export default Pagination;

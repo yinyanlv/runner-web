@@ -1,54 +1,22 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Pagination from '../../components/Pagination/Pagination';
-import Tabs from "./Tabs/Tabs";
+import Tabs from './Tabs/Tabs';
+import * as actions from './actions';
 
-class PageHome extends React.PureComponent {
+interface PageHomeProps {
+    loadTopics: any;
+    home: any;
+}
 
-    state = {
-        items: [{
-            id: '1',
-            url: '',
-            category: '',
-            categoryName: '精品',
-            title: '这是标题',
-            createBy: {
-                url: '',
-                avatarUrl: 'static/images/avatars/avatar.jpg',
-                username: 'admin'
-            },
-            createTime: '2019-11-11 11:11',
-            commentCount: 109,
-            viewCount: 200,
-            lastCommentBy: {
-                url: '',
-                avatarUrl: 'static/images/avatars/avatar.jpg',
-                username: 'admin'
-            },
-            lastCommentTime: '2019-12-12 12:12'
-        }, {
-            id: '2',
-            url: '',
-            category: '',
-            categoryName: '精品',
-            title: '这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题',
-            createBy: {
-                url: '',
-                avatarUrl: 'static/images/avatars/avatar.jpg',
-                username: 'admin'
-            },
-            createTime: '2019-11-11 11:11',
-            commentCount: 109,
-            viewCount: 200,
-            lastCommentBy: {
-                url: '',
-                avatarUrl: 'static/images/avatars/avatar.jpg',
-                username: 'admin'
-            },
-            lastCommentTime: '2019-12-12 12:12'
-        }]
-    };
+class PageHome extends React.PureComponent<PageHomeProps> {
 
+    componentDidMount(): void {
+
+        this.props.loadTopics();
+    }
 
     render() {
 
@@ -60,7 +28,7 @@ class PageHome extends React.PureComponent {
                 <div className="panel-content">
 
                     {
-                        this.state.items.length && this.state.items.map((item) => {
+                        this.props.home.topics && this.props.home.topics.length && this.props.home.topics.map((item) => {
 
                             return (
                                 <div className="topic" key={item.id}>
@@ -102,7 +70,7 @@ class PageHome extends React.PureComponent {
                     }
 
                     {
-                        !this.state.items.length && <div className="no-data">
+                        !this.props.home.topics.length && <div className="no-data">
                             暂无数据
                         </div>
                     }
@@ -115,4 +83,18 @@ class PageHome extends React.PureComponent {
     }
 }
 
-export default PageHome;
+function mapStateToProps({home}) {
+
+    return {
+        home
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+
+    return bindActionCreators({
+        loadTopics: actions.loadTopics
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageHome);

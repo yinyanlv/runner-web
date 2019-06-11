@@ -1,0 +1,102 @@
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import EventEmitter from '../utils/EventEmitter';
+
+class JwtService extends EventEmitter {
+
+    init(): void {
+
+        this._setInterceptors();
+        this._handleAuthentication();
+    }
+
+    private _setInterceptors(): void {
+
+        axios.interceptors.response.use((res) => {
+            return res;
+        }, (err) => {
+
+            return new Promise((resolve, reject) => {
+
+                if (err.response.status === 401) {
+                    this.emit('unauthorized', 'invalid access token!');
+                    this._clearSession();
+                }
+
+                throw err;
+            });
+        });
+    }
+
+    private _handleAuthentication(): void {
+
+        const accessToken = this._getAccessToken();
+
+        if (!accessToken) {
+            return;
+        }
+
+        if (this._isAccessTokenValid(accessToken)) {
+            this._setSession(accessToken);
+            this.emit('authorized', true)
+        } else {
+            this._clearSession();
+            this.emit('unauthorized', 'invalid access token!')
+        }
+    }
+
+    private _setSession(accessToken: string | null): void {
+
+        if (accessToken) {
+            localStorage.setItem('jwt_access_token', accessToken);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        } else {
+            localStorage.removeItem('jwt_access_token');
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    }
+
+    private _clearSession() {
+        this._setSession(null);
+    }
+
+    loginWithToken(): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+        });
+    }
+
+    loginWithPassword(): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+        });
+    }
+
+    logout(): void {
+        this._clearSession();
+    }
+
+    private _isAccessTokenValid(accessToken: string): boolean {
+
+        if (!accessToken) {
+            return false;
+        }
+
+        const decoded: any = jwtDecode(accessToken);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) {
+            console.warn('access token expired!');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private _getAccessToken(): string | null {
+        return localStorage.getItem('jwt_access_token');
+    }
+}
+
+export default new JwtService();

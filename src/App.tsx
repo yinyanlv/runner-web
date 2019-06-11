@@ -3,7 +3,6 @@ import {Route, Router, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import history from './history';
 import store from './store';
-import './interceptors';
 import './mock';
 import './App.scss';
 import Layout1 from './layouts/layout1/Layout1';

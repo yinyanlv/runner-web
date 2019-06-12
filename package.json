@@ -8,6 +8,7 @@
     "clsx": "^1.0.4",
     "font-awesome": "^4.7.0",
     "history": "^4.9.0",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@types/axios-mock-adapter": "^1.10.0",
     "@types/jest": "24.0.13",
+    "@types/jsonwebtoken": "^8.3.2",
     "@types/jwt-decode": "^2.2.1",
     "@types/node": "12.0.4",
     "@types/react": "16.8.19",

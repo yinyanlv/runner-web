@@ -60,21 +60,45 @@ class JwtService extends EventEmitter {
         this._setSession(null);
     }
 
-    loginWithToken(): Promise<any> {
+    loginWithAccessToken(): Promise<any> {
 
         return new Promise((resolve, reject) => {
-
+            axios.get('/api/auth-token', {
+                data: {
+                    accessToken: this._getAccessToken()
+                }
+            })
+                .then((res) => {
+                    if (res.data.success) {
+                        this._setSession(res.data.data.accessToken);
+                        resolve(res.data.data.user);
+                    } else {
+                        reject(res.data.data.error);
+                    }
+                });
         });
     }
 
-    loginWithPassword(): Promise<any> {
+    loginWithUsernameAndPassword({username, password}): Promise<any> {
 
         return new Promise((resolve, reject) => {
+            axios.post('/api/login', {
+                username,
+                password
+            }).then((res) => {
+                if (res.data.success) {
 
+                    this._setSession(res.data.data.accessToken);
+                    resolve(res.data.data.user);
+                } else {
+                    reject(res.data.error);
+                }
+            });
         });
     }
 
     logout(): void {
+        console.log('--- logout ---');
         this._clearSession();
     }
 

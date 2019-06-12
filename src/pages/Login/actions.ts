@@ -1,5 +1,6 @@
-import axios from 'axios';
+import jwtService from '../../services/jwtService';
 import history from '../../history';
+import {USER_SET_USER_DATA} from '../../store/user/user.actions';
 
 export const LOGIN_INPUT_USERNAME = 'INPUT USERNAME';
 export const LOGIN_INPUT_PASSWORD = 'INPUT PASSWORD';
@@ -11,31 +12,38 @@ export function submitLogin({username, password}) {
 
     return (dispatch) => {
 
-        axios.post('/api/login', {
+        jwtService.loginWithUsernameAndPassword({
             username,
             password
-        }).then((res) => {
+        })
+            .then((user) => {
 
-            dispatch({
-                type: LOGIN_LOGINNING,
-                payload: false
-            });
+                dispatch({
+                    type: USER_SET_USER_DATA,
+                    payload: {
+                        username: user.username,
+                        authorized: true
+                    }
+                });
 
-            if (res.data.success) {
+                dispatch({
+                    type: LOGIN_LOGINNING,
+                    payload: false
+                });
 
                 dispatch({
                     type: LOGIN_SUCCESS
                 });
 
                 history.push('/');
-            } else {
-               dispatch({
-                   type: LOGIN_ERROR,
-                   payload: {
-                       errorMessage: res.data.message
-                   }
-               });
-            }
-        });
+            })
+            .catch((err) => {
+                dispatch({
+                    type: LOGIN_ERROR,
+                    payload: {
+                        errorMessage: err
+                    }
+                });
+            });
     };
 }

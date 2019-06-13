@@ -2,10 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
-import history from '../../history';
 import './Header.scss';
-import jwtService from "../../services/jwtService";
-import {USER_RESET_USER_DATA} from '../../store/user/user.actions';
+import * as actions from '../../store/user/user.actions';
 
 interface HeaderProps {
     logout: any;
@@ -20,9 +18,9 @@ class Header extends React.PureComponent<HeaderProps> {
                 <header className="frame-header">
                     <div className="frame-wrapper">
                         <div className="header-left">
-                            <a className="logo" href="/">
+                            <Link className="logo" to="/">
                                 <img src="static/images/logo.png"/>
-                            </a>
+                            </Link>
                             <nav>
                                 <Link to={"/"} className="active">首页</Link>
                             </nav>
@@ -33,10 +31,10 @@ class Header extends React.PureComponent<HeaderProps> {
                                 <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
                             </div>
                             <nav>
-                                <a href="/create-topic">发布话题</a>
-                                <a href="/user/username">{this.props.user.username}</a>
+                                <Link to={"/create-topic"} >发布话题</Link>
+                                <Link to={"/user/" + this.props.user.username}>{this.props.user.username}</Link>
                                 <a href="javascript:;" onClick={this.props.logout}>退出</a>
-                                <a href="/register">注册</a>
+                                <Link to={"register"}>注册</Link>
                                 <Link to={"/login"}>登录</Link>
                             </nav>
                         </div>
@@ -46,20 +44,20 @@ class Header extends React.PureComponent<HeaderProps> {
                 <header className="m-frame-header">
                     <a href="javascript:;" className="btn btn-menu"><i className="fa fa-navicon"></i></a>
                     <div className="box-btns">
-                        <a className="btn" href={"/create-topic"}>发布话题</a>
-                        <a className="btn" href={"/register"}>注册</a>
-                        <a className="btn" href={"/login"}>登录</a>
+                        <Link className="btn" to={"/create-topic"}>发布话题</Link>
+                        <Link className="btn" to={"/register"}>注册</Link>
+                        <Link className="btn" to={"/login"}>登录</Link>
                     </div>
                     <div className="title">
-                        <a href={"/"}><img src="static/images/logo_short.png"/></a>
+                        <Link to={"/"}><img src="static/images/logo_short.png"/></Link>
                     </div>
                 </header>
 
                 <div className="m-nav-bg"></div>
                 <nav className="m-nav">
-                    <a href={"/"}><span className="icon"><i className="fa fa-home"></i></span> 首页</a>
-                    <a href={"/user/username"}><span className="icon"><i className="fa fa-user-circle"></i></span> 用户中心</a>
-                    <a href="javascript:;"><span className="icon"><i className="fa fa-sign-out"></i></span> 退出</a>
+                    <Link to={"/"}><span className="icon"><i className="fa fa-home"></i></span> 首页</Link>
+                    <Link to={"/user/" + this.props.user.username}><span className="icon"><i className="fa fa-user-circle"></i></span> 用户中心</Link>
+                    <a href="javascript:;" onClick={this.props.logout}><span className="icon"><i className="fa fa-sign-out"></i></span> 退出</a>
                 </nav>
             </section>
         );
@@ -75,17 +73,7 @@ function mapStateToProps({user}) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        logout: () => {
-            return (dispatch) => {
-                jwtService.logout();
-                dispatch({
-                    type: USER_RESET_USER_DATA
-                });
-                history.push({
-                    pathname: '/login'
-                });
-            };
-        }
+        logout: actions.logout
     }, dispatch);
 }
 

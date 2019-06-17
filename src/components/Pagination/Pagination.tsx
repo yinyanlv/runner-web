@@ -3,23 +3,56 @@ import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 import './Pagination.scss';
 
-const RECORDS_COUNT_PER_PAGE = 20;
+interface PaginationProps {
+    paging: any;
+    handleClick: any;
+}
 
-function buildPagination(config = {
-    currentPage: 1,
-    total: 10,
-    baseUrl: ''
+class Pagination extends PureComponent<PaginationProps>{
+
+    render() {
+        const paging = buildPagination(this.props.paging);
+
+        return (
+            <div className="pagination">
+                <Link className={clsx('first', {disabled: paging.isFirstPageDisabled})} to={""} onClick={() => {
+                    this.props.handleClick({page: paging.firstPage})
+                }}>«</Link>
+                {
+                    paging.isShowPrevEllipsis && <a className="ellipsis">...</a>
+                }
+                {paging.pageList.map((item) => {
+                    return <Link to={""} key={item.page} className={clsx({active: item.isActive})} onClick={() => {
+                        this.props.handleClick({page: item.page})
+                    }}>{item.page}</Link>;
+                })}
+                {
+                    paging.isShowNextEllipsis && <a className="ellipsis">...</a>
+                }
+                <Link className={clsx('last', {disabled: paging.isLastPageDisabled})} to={""} onClick={() => {
+                    this.props.handleClick({page: paging.lastPage})
+                }}>»</Link>
+            </div>
+        );
+    }
+}
+
+function buildPagination(paging: {
+    currentPage: number,
+    total: number,
+    perPageNumber: number,
+    baseUrl: string
 }) {
-    let curPage = config.currentPage;
-    let total = config.total;
-    let baseUrl = config.baseUrl;
+    let curPage = paging.currentPage;
+    let total = paging.total;
+    let baseUrl = paging.baseUrl;
     let delta = 1;
 
-    if (total % RECORDS_COUNT_PER_PAGE === 0) {
+    if (total % paging.perPageNumber === 0) {
         delta = 0;
     }
 
-    let pageCount = total / RECORDS_COUNT_PER_PAGE + delta;
+    let pageCount = total / paging.perPageNumber + delta;
     let isShowPrevEllipsis = true;
     let isShowNextEllipsis = true;
     let isFirstPageDisabled = false;
@@ -116,53 +149,5 @@ function buildPagination(config = {
     };
 }
 
-class Pagination extends PureComponent{
-
-    state = buildPagination({
-        total: 500,
-        currentPage: 1,
-        baseUrl: ''
-    });
-
-    handleClick = (config) => {
-
-        const state = buildPagination({
-            total: 500,
-            currentPage: config.page,
-            baseUrl: ''
-        });
-
-        this.setState(state);
-    };
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-
-        return (
-            <div className="pagination">
-                <Link className={clsx('first', {disabled: this.state.isFirstPageDisabled})} to={""} onClick={() => {
-                    this.handleClick({page: this.state.firstPage})
-                }}>«</Link>
-                {
-                    this.state.isShowPrevEllipsis && <a className="ellipsis">...</a>
-                }
-                {this.state.pageList.map((item) => {
-                    return <Link to={""} key={item.page} className={clsx({active: item.isActive})} onClick={() => {
-                        this.handleClick({page: item.page})
-                    }}>{item.page}</Link>;
-                })}
-                {
-                    this.state.isShowNextEllipsis && <a className="ellipsis">...</a>
-                }
-                <Link className={clsx('last', {disabled: this.state.isLastPageDisabled})} to={""} onClick={() => {
-                    this.handleClick({page: this.state.lastPage})
-                }}>»</Link>
-            </div>
-        );
-    }
-}
 
 export default Pagination;

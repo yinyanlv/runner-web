@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-export const HOME_LOAD = 'home load';
-export const HOME_LOADING = 'home loading';
-export const HOME_LOADED = 'home loaded';
+export const HOME_LOAD = 'home:load';
+export const HOME_LOADING = 'home:loading';
+export const HOME_LOADED = 'home:loaded';
+export const HOME_CHANGE_TAB = 'home:change-tab';
+export const HOME_CHANGE_PAGE = 'home:change-page';
 
 export function loadTopics() {
 

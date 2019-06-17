@@ -3,42 +3,18 @@ import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 import './Tabs.scss';
 
-class Tabs extends React.PureComponent {
-    state = {
-        items: [{
-            id: 'home',
-            text: '首页',
-            isActive: true,
-            url: ''
-        }, {
-            id: 'about',
-            text: '关于',
-            isActive: false,
-            url: ''
-        }]
-    };
+interface TabsProps {
+    items: any[];
+    handleClick: any;
+}
 
-    handleClickItem = (curItem) => {
-        let result: any = [];
-        this.state.items.forEach((item) => {
-            if (curItem.id === item.id) {
-                item.isActive = true;
-            } else {
-                item.isActive = false;
-            }
-            result.push(item);
-        });
-        this.setState({
-            items: result
-        });
-    };
-
+class Tabs extends React.PureComponent<TabsProps> {
     render() {
         return (
             <div className="tabs">
-                {this.state.items.map((item) => {
+                {this.props.items.map((item) => {
                     return <Link to={item.url} key={item.id} className={clsx({active: item.isActive})} onClick={() => {
-                        this.handleClickItem(item);
+                        this.props.handleClick(item);
                     }}>{item.text}</Link>;
                 })}
             </div>

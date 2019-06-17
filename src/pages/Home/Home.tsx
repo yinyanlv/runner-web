@@ -9,9 +9,12 @@ import * as actions from './actions';
 interface PageHomeProps {
     loadTopics: any;
     home: any;
+    handleClickTab: any;
+    handleClickPage: any;
 }
 
 class PageHome extends React.PureComponent<PageHomeProps> {
+
 
     componentDidMount(): void {
 
@@ -23,7 +26,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
         return (
             <>
                 <div className="panel-header">
-                    <Tabs/>
+                    <Tabs items={this.props.home.tabs} handleClick={this.props.handleClickTab}/>
                 </div>
                 <div className="panel-content">
 
@@ -76,7 +79,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                     }
                 </div>
                 <div className="panel-footer">
-                    <Pagination/>
+                    <Pagination paging={this.props.home.paging} handleClick={this.props.handleClickPage} />
                 </div>
             </>
         );
@@ -93,7 +96,21 @@ function mapStateToProps({home}) {
 function mapDispatchToProps(dispatch) {
 
     return bindActionCreators({
-        loadTopics: actions.loadTopics
+        loadTopics: actions.loadTopics,
+
+        handleClickTab: (item) => {
+            return {
+                type: actions.HOME_CHANGE_TAB,
+                payload: item
+            }
+        },
+
+        handleClickPage: (page) => {
+            return {
+                type: actions.HOME_CHANGE_PAGE,
+                payload: page
+            }
+        }
     }, dispatch);
 }
 

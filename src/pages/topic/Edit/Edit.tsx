@@ -1,17 +1,34 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/index.css'
 import './Edit.scss';
 import Crumbs from '../../../components/Crumbs/Crumbs';
-import {func} from "prop-types";
 
 class PageTopicEdit extends React.PureComponent {
+
+    crumbs: any[] = [{
+        text: '首页',
+        url: '/'
+    }, {
+        text: '新建话题'
+    }];
+
+    handleEditorChange(editorState) {
+
+        console.log(editorState.toHTML());
+    }
+
+    submit() {
+
+    }
 
     render() {
         return (
             <>
                 <div className="panel-header">
-                    <Crumbs/>
+                    <Crumbs items={this.crumbs} />
                 </div>
 
                 <div className="panel-content">
@@ -31,7 +48,11 @@ class PageTopicEdit extends React.PureComponent {
                         </div>
                         <div className="editor-wrapper">
                             <div className="editor-wrapper-inner edit-article">
-                                {/*<mavon-editor></mavon-editor>*/}
+                                <BraftEditor
+                                    value={""}
+                                    onChange={this.handleEditorChange}
+                                    onSave={this.submit}
+                                />
                             </div>
                         </div>
                         <div className="btn-line">
@@ -45,7 +66,7 @@ class PageTopicEdit extends React.PureComponent {
 }
 
 function mapStateToProps() {
-    
+
 }
 
 function mapDispatchToProps() {

@@ -7,7 +7,7 @@ import PageLogin from '../../pages/Login/Login';
 import PageHome from '../../pages/Home/Home';
 import Aside from '../../components/Aside/Aside';
 import MobileSearch from '../../components/MobileSearch/MobileSearch';
-import BackToTop from '../../components/BackToTop/BackToTop';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import PageTopicEdit from '../../pages/topic/Edit/Edit';
 import PageTopicDetail from '../../pages/topic/Detail/Detail';
 
@@ -38,7 +38,7 @@ class Layout1 extends React.PureComponent {
                     </div>
                 </section>
                 <Footer/>
-                <BackToTop/>
+                <ScrollToTop delayInMs={500} scrollStepInPx={50} />
             </>
         );
     }

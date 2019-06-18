@@ -17,6 +17,13 @@ interface LoginProps {
 
 class PageLogin extends React.PureComponent<LoginProps> {
 
+    crumbs: any[] = [{
+        text: '首页',
+        url: '/'
+    }, {
+        text: '登录'
+    }];
+
     constructor(props: any) {
         super(props);
     }
@@ -85,7 +92,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
         return (
             <>
                 <div className="panel-header">
-                    <Crumbs/>
+                    <Crumbs items={this.crumbs} />
                 </div>
                 <div className="panel-content">
                     <div className="frame-form">

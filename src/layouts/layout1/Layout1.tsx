@@ -8,6 +8,8 @@ import PageHome from '../../pages/Home/Home';
 import Aside from '../../components/Aside/Aside';
 import MobileSearch from '../../components/MobileSearch/MobileSearch';
 import BackToTop from '../../components/BackToTop/BackToTop';
+import PageTopicEdit from '../../pages/topic/Edit/Edit';
+import PageTopicDetail from '../../pages/topic/Detail/Detail';
 
 class Layout1 extends React.PureComponent {
 
@@ -24,6 +26,9 @@ class Layout1 extends React.PureComponent {
                                     <Switch>
                                         <Route path={"/login"} exact={true} component={PageLogin}/>
                                         <Route path={"/"} exact={true} component={PageHome}/>
+                                        <Route path={"/topic/create"} exact={true} component={PageTopicEdit}/>
+                                        <Route path={"/topic/create/:id"} exact={true} component={PageTopicEdit}/>
+                                        <Route path={"/topic/detail/:id"} exact={true} component={PageTopicDetail}/>
                                         <Redirect to={"/404"}/>
                                     </Switch>
                                 </div>

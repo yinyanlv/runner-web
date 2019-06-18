@@ -31,7 +31,7 @@ class Header extends React.PureComponent<HeaderProps> {
                                 <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
                             </div>
                             <nav>
-                                <Link to={"/create-topic"} >发布话题</Link>
+                                <Link to={"/topic/create"} >发布话题</Link>
                                 <Link to={"/user/" + this.props.user.username}>{this.props.user.username}</Link>
                                 <a href="javascript:;" onClick={this.props.logout}>退出</a>
                                 <Link to={"register"}>注册</Link>

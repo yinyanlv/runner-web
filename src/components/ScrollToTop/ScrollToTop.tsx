@@ -12,6 +12,12 @@ class ScrollToTop extends React.PureComponent<ScrollToTopProps> {
         intervalId: 0
     };
 
+    componentDidMount() {
+        window.onscroll = () => {
+            console.log(1);
+        };
+    }
+
     handleClick = () => {
 
         this.scrollToTop();

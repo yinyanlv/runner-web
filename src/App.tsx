@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Route, Router, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import MobileDetect from 'mobile-detect';
 import AppContext from './AppContext';
 import history from './history';
 import store from './store';
@@ -13,8 +12,9 @@ import {PageError} from './pages/Error';
 
 class App extends PureComponent {
 
-    mobileDetect: MobileDetect = new MobileDetect(window.navigator.userAgent);
-    isMobile = this.mobileDetect.mobile();
+    state = {
+        isMobile: this.isMobile()
+    };
 
     constructor(props) {
         super(props);
@@ -22,12 +22,28 @@ class App extends PureComponent {
 
     componentDidMount(): void {
 
+        window.addEventListener('resize', this.handleResize, false);
+    }
+
+    componentWillUnmount(): void {
+        window.removeEventListener('resize', this.handleResize, false);
+    }
+
+    handleResize = () => {
+
+        this.setState({
+            isMobile: this.isMobile()
+        })
+    };
+
+    isMobile() {
+        return window.innerWidth < 960;
     }
 
     render() {
         return (
             <AppContext.Provider value={{
-                test: 'test'
+                isMobile: this.state.isMobile
             }}>
                 <Provider store={store}>
                     <Router history={history}>

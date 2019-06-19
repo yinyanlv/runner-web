@@ -1,7 +1,7 @@
 import React from 'react';
-import './MobileSearch.scss';
+import './MSearch.scss';
 
-class MobileSearch extends React.PureComponent {
+class MSearch extends React.PureComponent {
 
     render() {
         return (
@@ -15,4 +15,4 @@ class MobileSearch extends React.PureComponent {
     }
 }
 
-export default MobileSearch;
+export default MSearch;

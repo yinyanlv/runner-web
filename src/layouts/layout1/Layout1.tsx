@@ -1,15 +1,15 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router';
 import './Layout1.scss';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import PageLogin from '../../pages/Login/Login';
-import PageHome from '../../pages/Home/Home';
-import Aside from '../../components/Aside/Aside';
-import MobileSearch from '../../components/MobileSearch/MobileSearch';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-import PageTopicEdit from '../../pages/topic/Edit/Edit';
-import PageTopicDetail from '../../pages/topic/Detail/Detail';
+import {Header} from '../../components/Header';
+import {Footer} from '../../components/Footer';
+import {Aside} from '../../components/Aside';
+import {MobileSearch} from '../../components/MobileSearch';
+import {ScrollToTop} from '../../components/ScrollToTop';
+import {PageLogin} from '../../pages/Login';
+import {PageHome} from '../../pages/Home';
+import {PageTopicEdit} from '../../pages/topic/Edit';
+import {PageTopicDetail} from '../../pages/topic/Detail';
 
 class Layout1 extends React.PureComponent {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {DispatchProp, connect} from 'react-redux';
+import {connect, DispatchProp} from 'react-redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
 import jwtService from '../../services/jwtService';
 import AppContext from '../../AppContext';

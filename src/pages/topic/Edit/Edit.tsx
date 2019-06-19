@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 import './Edit.scss';
-import Crumbs from '../../../components/Crumbs/Crumbs';
+import {Crumbs} from '../../../components/Crumbs';
 
 class PageTopicEdit extends React.PureComponent {
 

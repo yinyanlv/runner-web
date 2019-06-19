@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 import './Login.scss';
-import Crumbs from '../../components/Crumbs/Crumbs';
+import {Crumbs} from '../../components/Crumbs';
 import * as actions from './actions';
 
 interface LoginProps {

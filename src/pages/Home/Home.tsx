@@ -2,8 +2,8 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Pagination from '../../components/Pagination/Pagination';
-import Tabs from './Tabs/Tabs';
+import {Pagination} from '../../components/Pagination';
+import {Tabs} from './Tabs';
 import * as actions from './actions';
 
 interface PageHomeProps {

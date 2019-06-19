@@ -149,5 +149,4 @@ function buildPagination(paging: {
     };
 }
 
-
 export default Pagination;

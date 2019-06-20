@@ -50,7 +50,7 @@ class Layout1 extends React.PureComponent {
                                     </div>
                                 </section>
                                 <Footer/>
-                                <ScrollToTop delayInMs={500} scrollStepInPx={50} />
+                                <ScrollToTop delayInMs={30} scrollStepInPx={50} />
                             </>
                         );
                     }

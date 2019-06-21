@@ -1,5 +1,20 @@
 import React from 'react';
+import {Transition} from 'react-transition-group';
 import './ScrollToTop.scss';
+
+const duration = 1000;
+
+const defaultStyle = {
+    transition: `opacity ${duration}ms ease-in-out`,
+    opacity: 0
+};
+
+const transitionStyles = {
+    entering: {opacity: 1},
+    entered: {opacity: 1},
+    exiting: {opacity: 0},
+    exited: {opacity: 0}
+};
 
 interface ScrollToTopProps {
     scrollStepInPx: number;
@@ -56,13 +71,23 @@ class ScrollToTop extends React.PureComponent<ScrollToTopProps> {
     }
 
     render() {
-
         return (
-            <div className="scroll-to-top" onClick={this.handleClick} style={{
-                display: this.state.isShow ? 'block': 'none'
-            }}>
-                <span>回到顶部</span>
-            </div>
+            <Transition timeout={duration} in={this.state.isShow}  mountOnEnter unmountOnExit>
+                {
+                    (state) => {
+                        console.log(state);
+                        return <div
+                            className="scroll-to-top"
+                            onClick={this.handleClick}
+                            style={{
+                                ...defaultStyle, ...transitionStyles[state]
+                            }}
+                        >
+                            <span>回到顶部</span>
+                        </div>;
+                    }
+                }
+            </Transition>
         );
     }
 }

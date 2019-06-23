@@ -2,7 +2,7 @@ import React from 'react';
 import {Transition} from 'react-transition-group';
 import './ScrollToTop.scss';
 
-const duration = 1000;
+const duration = 500;
 
 const defaultStyle = {
     transition: `opacity ${duration}ms ease-in-out`,
@@ -10,7 +10,7 @@ const defaultStyle = {
 };
 
 const transitionStyles = {
-    entering: {opacity: 1},
+    entering: {opacity: 0},
     entered: {opacity: 1},
     exiting: {opacity: 0},
     exited: {opacity: 0}
@@ -72,10 +72,12 @@ class ScrollToTop extends React.PureComponent<ScrollToTopProps> {
 
     render() {
         return (
-            <Transition timeout={duration} in={this.state.isShow}  mountOnEnter unmountOnExit>
+            <Transition timeout={{
+                enter: 0,
+                exit: duration
+            }} in={this.state.isShow} unmountOnExit={!this.state.isShow}>
                 {
                     (state) => {
-                        console.log(state);
                         return <div
                             className="scroll-to-top"
                             onClick={this.handleClick}

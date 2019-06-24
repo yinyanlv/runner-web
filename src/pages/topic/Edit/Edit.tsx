@@ -1,12 +1,16 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import BraftEditor from 'braft-editor'
+import ForEditor from 'for-editor';
 import 'braft-editor/dist/index.css'
 import './Edit.scss';
 import {Crumbs} from '../../../components/Crumbs';
 
 class PageTopicEdit extends React.PureComponent {
+
+    state = {
+        value: ''
+    };
 
     crumbs: any[] = [{
         text: '首页',
@@ -15,13 +19,14 @@ class PageTopicEdit extends React.PureComponent {
         text: '新建话题'
     }];
 
-    handleEditorChange(editorState) {
+    handleEditorChange = (value) => {
+        this.setState({
+            value
+        });
+    };
 
-        console.log(editorState.toHTML());
-    }
-
-    submit() {
-
+    submit(value) {
+        console.log(value);
     }
 
     render() {
@@ -48,8 +53,10 @@ class PageTopicEdit extends React.PureComponent {
                         </div>
                         <div className="editor-wrapper">
                             <div className="editor-wrapper-inner edit-article">
-                                <BraftEditor
-                                    value={""}
+                                <ForEditor
+                                    value={this.state.value}
+                                    preview={true}
+                                    subfield={true}
                                     onChange={this.handleEditorChange}
                                     onSave={this.submit}
                                 />

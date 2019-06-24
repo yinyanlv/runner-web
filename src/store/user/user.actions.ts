@@ -4,6 +4,19 @@ import history from '../../history';
 export const USER_SET_USER_DATA = 'user:set user data';
 export const USER_RESET_USER_DATA = 'user:reset user data';
 
+
+export function setUserData(user) {
+    return (dispatch) => {
+        dispatch({
+            type: USER_SET_USER_DATA,
+            payload: {
+                username: user.username,
+                authorized: true
+            }
+        });
+    };
+}
+
 export function logout() {
 
     return (dispatch) => {

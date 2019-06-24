@@ -5,10 +5,10 @@ import jwtService from '../../services/jwtService';
 import AppContext from '../../AppContext';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../store/user/user.actions';
-import {USER_SET_USER_DATA} from "../../store/user/user.actions";
 
 interface AuthProps extends RouteComponentProps, DispatchProp {
-    logout: any;
+    logout: () => void;
+    setUserData: (user: any) => void;
     user: any;
 }
 
@@ -60,18 +60,12 @@ class Auth extends React.PureComponent<AuthProps> {
 
     private _jwtCheck() {
         jwtService.on('authorized', () => {
-
             jwtService.loginWithAccessToken()
                 .then((user) => {
-                    this.props.dispatch({
-                        type: USER_SET_USER_DATA,
-                        payload: {
-                            username: user.username,
-                            authorized: true
-                        }
+                    this.props.setUserData(user);
+                    this.props.history.push({
+                        pathname: this.props.location.state.redirectUrl || '/'
                     });
-
-                    this.props.history.push('/');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -79,7 +73,6 @@ class Auth extends React.PureComponent<AuthProps> {
         });
 
         jwtService.on('unauthorized',  () => {
-
             this.props.logout();
         });
 
@@ -100,7 +93,8 @@ function mapStateToProps({user}) {
 function mapDispatchToProps(dispatch) {
 
     return bindActionCreators({
-        logout: actions.logout
+        logout: actions.logout,
+        setUserData: actions.setUserData
     }, dispatch);
 }
 

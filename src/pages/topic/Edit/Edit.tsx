@@ -2,11 +2,16 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ForEditor from 'for-editor';
-import 'braft-editor/dist/index.css'
 import './Edit.scss';
 import {Crumbs} from '../../../components/Crumbs';
+import * as actions from '../../../store/category/category.actions';
 
-class PageTopicEdit extends React.PureComponent {
+interface PageTopicEditProps {
+    category: any;
+    loadCategories: any;
+}
+
+class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
 
     state = {
         value: ''
@@ -18,6 +23,10 @@ class PageTopicEdit extends React.PureComponent {
     }, {
         text: '新建话题'
     }];
+
+    componentDidMount(): void {
+        this.props.loadCategories();
+    }
 
     handleEditorChange = (value) => {
         this.setState({
@@ -40,9 +49,13 @@ class PageTopicEdit extends React.PureComponent {
                     <div className="create-topic">
                         <div className="category-line">
                             <label>请选择版块：</label>
-                            <select name="category" v-model="category">
+                            <select name="category">
                                 <option value="">请选择</option>
-                                <option>item.categoryNameCn</option>
+                                {
+                                    this.props.category.categories && this.props.category.categories.map((item) => {
+                                        return <option key={item.code} value={item.code}>{item.name}</option>;
+                                    })
+                                }
                             </select>
                         </div>
                         <div className="title-line">
@@ -72,13 +85,19 @@ class PageTopicEdit extends React.PureComponent {
     }
 }
 
-function mapStateToProps() {
+function mapStateToProps({category}) {
 
+    return {
+        category
+    };
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
 
+    return bindActionCreators({
+        loadCategories: actions.loadCategories
+    }, dispatch);
 }
 
 
-export default connect()(PageTopicEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(PageTopicEdit);

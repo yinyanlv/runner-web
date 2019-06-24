@@ -2,11 +2,11 @@ import jwtService from '../../services/jwtService';
 import history from '../../history';
 import {USER_SET_USER_DATA} from '../../store/user/user.actions';
 
-export const LOGIN_INPUT_USERNAME = 'INPUT USERNAME';
-export const LOGIN_INPUT_PASSWORD = 'INPUT PASSWORD';
-export const LOGIN_LOGINNING = 'LOGIN LOGINNING';
-export const LOGIN_SUCCESS = 'LOGIN SUCCESS';
-export const LOGIN_ERROR = 'LOGIN ERROR';
+export const LOGIN_INPUT_USERNAME = 'login:input username';
+export const LOGIN_INPUT_PASSWORD = 'login:input password';
+export const LOGIN_LOGINNING = 'login:loginning';
+export const LOGIN_SUCCESS = 'login:success';
+export const LOGIN_ERROR = 'login:error';
 
 export function submitLogin({username, password}) {
 

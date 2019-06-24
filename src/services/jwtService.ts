@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import EventEmitter from '../utils/EventEmitter';
+import {config} from '../config';
 
 class JwtService extends EventEmitter {
 
@@ -63,7 +64,7 @@ class JwtService extends EventEmitter {
     loginWithAccessToken(): Promise<any> {
 
         return new Promise((resolve, reject) => {
-            axios.get('/api/auth-token', {
+            axios.get(config.API_PREFIX + '/auth-token', {
                 data: {
                     accessToken: this._getAccessToken()
                 }

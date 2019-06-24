@@ -1,6 +1,6 @@
 import mock from '../mock';
 
-const topicListDb = {
+const topicDb = {
     topics: [{
         id: '1',
         url: '',
@@ -45,5 +45,5 @@ const topicListDb = {
 };
 
 mock.onGet('/api/topic-list').reply(() => {
-    return [200, topicListDb.topics];
+    return [200, topicDb.topics];
 });

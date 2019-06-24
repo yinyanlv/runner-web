@@ -1,5 +1,6 @@
 import mock from './mock';
 import './db/userDb';
-import './db/topicListDb';
+import './db/topicDb';
+import './db/categoryDb';
 
 mock.onAny().passThrough();

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {config} from '../../config';
 
 export const HOME_LOAD = 'home:load';
 export const HOME_LOADING = 'home:loading';
@@ -15,7 +16,7 @@ export function loadTopics() {
             payload: true
         });
 
-        axios.get('/api/topic-list').then((res) => {
+        axios.get(config.API_PREFIX + '/topic-list').then((res) => {
 
             dispatch({
                 type: HOME_LOADING,

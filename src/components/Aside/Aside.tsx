@@ -30,17 +30,17 @@ export default function Aside() {
                         </li>
                         <li>
                             <a href="https://ruby-china.org" rel="nofollow" target="_blank">
-                                <img src="static/images/friendly/ruby.png"/>
+                                <img src="/static/images/friendly/ruby.png"/>
                             </a>
                         </li>
                         <li>
                             <a href="https://cnodejs.org" rel="nofollow" target="_blank">
-                                <img src="static/images/friendly/cnode.png"/>
+                                <img src="/static/images/friendly/cnode.png"/>
                             </a>
                         </li>
                         <li>
                             <a href="https://gocn.io" rel="nofollow" target="_blank">
-                                <img src="static/images/friendly/gocn.png"/>
+                                <img src="/static/images/friendly/gocn.png"/>
                             </a>
                         </li>
                     </ul>

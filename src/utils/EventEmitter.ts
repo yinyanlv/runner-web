@@ -1,4 +1,4 @@
-class EventEmitter {
+export class EventEmitter {
 
     private _eventsMap: { [key: string]: Set<Function> } = {};
 
@@ -40,5 +40,3 @@ class EventEmitter {
         this._getEventListenersByName(eventName).delete(fn);
     }
 }
-
-export default EventEmitter;

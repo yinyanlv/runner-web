@@ -18,7 +18,7 @@ class Header extends React.PureComponent<HeaderProps> {
                 <div className="frame-wrapper">
                     <div className="header-left">
                         <Link className="logo" to="/">
-                            <img src="static/images/logo.png"/>
+                            <img src="/static/images/logo.png"/>
                         </Link>
                         <nav>
                             <Link to={"/"} className="active">首页</Link>

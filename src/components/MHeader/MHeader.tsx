@@ -22,7 +22,7 @@ class MHeader extends React.PureComponent<MHeaderProps> {
                         <Link className="btn" to={"/login"}>登录</Link>
                     </div>
                     <div className="title">
-                        <Link to={"/"}><img src="static/images/logo_short.png"/></Link>
+                        <Link to={"/"}><img src="/static/images/logo_short.png"/></Link>
                     </div>
                 </header>
 

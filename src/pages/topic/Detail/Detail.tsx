@@ -45,7 +45,7 @@ class PageTopicDetail extends React.PureComponent {
                         <div className="panel-content">
                             <div className="comment" v-for="(comment, index) in comments">
                                 <div className="avatar">
-                                    <a href={""}><img src="static/images/avatars/avatar.jpg"/></a>
+                                    <a href={""}><img src="/static/images/avatars/avatar.jpg"/></a>
                                 </div>
                                 <div className="info">
                                     <dl>

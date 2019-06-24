@@ -9,7 +9,7 @@ const topicDb = {
         title: '这是标题',
         createBy: {
             url: '',
-            avatarUrl: 'static/images/avatars/avatar.jpg',
+            avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
         createTime: '2019-11-11 11:11',
@@ -17,7 +17,7 @@ const topicDb = {
         viewCount: 200,
         lastCommentBy: {
             url: '',
-            avatarUrl: 'static/images/avatars/avatar.jpg',
+            avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
         lastCommentTime: '2019-12-12 12:12'
@@ -29,7 +29,7 @@ const topicDb = {
         title: '这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题',
         createBy: {
             url: '',
-            avatarUrl: 'static/images/avatars/avatar.jpg',
+            avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
         createTime: '2019-11-11 11:11',
@@ -37,7 +37,7 @@ const topicDb = {
         viewCount: 200,
         lastCommentBy: {
             url: '',
-            avatarUrl: 'static/images/avatars/avatar.jpg',
+            avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
         lastCommentTime: '2019-12-12 12:12'

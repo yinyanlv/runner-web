@@ -21,7 +21,6 @@ class App extends PureComponent {
     }
 
     componentDidMount(): void {
-
         window.addEventListener('resize', this.handleResize, false);
     }
 

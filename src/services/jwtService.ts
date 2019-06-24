@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import EventEmitter from '../utils/EventEmitter';
+import {EventEmitter} from '../utils/EventEmitter';
 import {config} from '../config';
 
 class JwtService extends EventEmitter {

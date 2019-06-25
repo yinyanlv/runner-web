@@ -1240,6 +1240,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/codemirror@^0.0.65":
+  version "0.0.65"
+  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.65.tgz#5f8d546d40c9d2acb1166167aae9e70d1b9a83b7"
+  integrity sha512-XJo1mbkiLI0M4zR1LqpM6ljDgnpIoDkqs3JPp0jLZ8DHbqbha+YNWemhlqQyJrLIame+eOkefrL8U+NNPB4FAQ==
+
 "@types/history@*":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
@@ -2666,6 +2671,18 @@ code-point-at@^1.0.0:
   resolved "https://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
+codemirror-spell-checker@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/codemirror-spell-checker/-/codemirror-spell-checker-1.1.2.tgz#1c660f9089483ccb5113b9ba9ca19c3f4993371e"
+  integrity sha1-HGYPkIlIPMtRE7m6nKGcP0mTNx4=
+  dependencies:
+    typo-js "*"
+
+codemirror@^5.47.0:
+  version "5.48.0"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.48.0.tgz#66e6dae6ca79b955e34b322881ebb7b5512f3cc5"
+  integrity sha512-3Ter+tYtRlTNtxtYdYNPxGxBL/b3cMcvPdPm70gvmcOO2Rauv/fUEewWa0tT596Hosv6ea2mtpx28OXBy1mQCg==
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/collection-visit/download/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -3562,6 +3579,15 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easymde@^2.6.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/easymde/-/easymde-2.6.1.tgz#4b86a376b05070883ac4fbeb924e1c141ab69935"
+  integrity sha512-DNdAn7xADNJBGQSULncZJXOlHSyK1IqvOPIaFOSKv18GBKItuCFy/f6KEUhFx47MDLQpWgznJgfvh9VKjavzaQ==
+  dependencies:
+    codemirror "^5.47.0"
+    codemirror-spell-checker "1.1.2"
+    marked "^0.6.2"
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/ecc-jsbn/download/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -4269,14 +4295,6 @@ font-awesome@^4.7.0:
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
-for-editor@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/for-editor/-/for-editor-0.2.6.tgz#d72ed9a97d963966ea50e2d2e1f8ba77929bc47a"
-  integrity sha512-SGvRBmb8JnxcceCaE9VktROCIFD9BME+4YT6He5kjCCOnjVlf9VcKgDfm5tBIZMoU04d/ZI/dDjvoHJQwKZEAA==
-  dependencies:
-    highlight.js "^9.13.1"
-    marked "^0.6.2"
-
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.npm.taobao.org/for-in/download/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -4729,11 +4747,6 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npm.taobao.org/hex-color-regex/download/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha1-TAb8y0YC/iYCs8k9+C1+fb8aio4=
-
-highlight.js@^9.13.1:
-  version "9.15.8"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.8.tgz#f344fda123f36f1a65490e932cf90569e4999971"
-  integrity sha512-RrapkKQWwE+wKdF73VsOa2RQdIoO3mxwJ4P8mhbI6KYJUraUHRKM5w5zQQKXNk0xNL4UVRdulV9SBJcmzJNzVA==
 
 history@^4.9.0:
   version "4.9.0"
@@ -8579,6 +8592,14 @@ react-scripts@3.0.1:
   optionalDependencies:
     fsevents "2.0.6"
 
+react-simplemde-editor@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-simplemde-editor/-/react-simplemde-editor-4.0.3.tgz#e265b7b91f76d2356447c386653c75a0910fc829"
+  integrity sha512-8M/WJ12CF94B3YhpZtohELJEtmkCtUrIiWAPFxT5JOzaAh8GynOkEeKLh25c6fORx4tWZEYx40K84qyBN1lB2g==
+  dependencies:
+    "@types/codemirror" "^0.0.65"
+    easymde "^2.6.0"
+
 react-transition-group@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.1.1.tgz#16efe9ac8c68306f6bef59c7da5a96b4dfd9fb32"
@@ -10058,6 +10079,11 @@ typescript@3.5.1:
   version "3.5.1"
   resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
   integrity sha1-unKmpgCyFYE5xd2IUPcA4jFGQgI=
+
+typo-js@*:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/typo-js/-/typo-js-1.0.3.tgz#54d8ebc7949f1a7810908b6002c6841526c99d5a"
+  integrity sha1-VNjrx5SfGngQkItgAsaEFSbJnVo=
 
 ua-parser-js@^0.7.18:
   version "0.7.19"

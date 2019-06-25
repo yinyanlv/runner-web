@@ -1,8 +1,8 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import ForEditor from 'for-editor';
 import './Edit.scss';
+import {MdEditor} from '../../../components/MdEditor';
 import {Crumbs} from '../../../components/Crumbs';
 import * as actions from '../../../store/category/category.actions';
 
@@ -66,12 +66,9 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                         </div>
                         <div className="editor-wrapper">
                             <div className="editor-wrapper-inner edit-article">
-                                <ForEditor
+                                <MdEditor
                                     value={this.state.value}
-                                    preview={true}
-                                    subfield={true}
                                     onChange={this.handleEditorChange}
-                                    onSave={this.submit}
                                 />
                             </div>
                         </div>

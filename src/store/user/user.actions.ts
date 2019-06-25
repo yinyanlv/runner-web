@@ -17,7 +17,7 @@ export function setUserData(user) {
     };
 }
 
-export function logout() {
+export function logout(): (dispatch: any) => void {
 
     return (dispatch) => {
         jwtService.logout();

@@ -4,13 +4,13 @@ import {defaultOptions} from './options';
 
 import './MdEditor.scss';
 
-interface Props {
+interface MdEditorProps {
     value: any;
     onChange: (value: any) => void;
     options?: any;
 }
 
-class MdEditor extends React.PureComponent<Props> {
+class MdEditor extends React.PureComponent<MdEditorProps> {
 
     render() {
         return (

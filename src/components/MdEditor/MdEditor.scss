@@ -1,2 +1,14 @@
 @import "~easymde/dist/easymde.min.css";
-@import "styles/scss/sdk/index";
+@import "~highlight.js/styles/default.css";
+@import "~highlight.js/styles/github.css";
+@import "src/styles/scss/sdk/index";
+
+.editor-toolbar{
+  &.fullscreen{
+    z-index: 1000 !important;
+  }
+}
+
+.CodeMirror-fullscreen{
+  z-index: 1000 !important;
+}

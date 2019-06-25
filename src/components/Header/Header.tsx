@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {Link} from 'react-router-dom';
 import './Header.scss';
 import * as actions from '../../store/user/user.actions';
 
 interface HeaderProps {
-    logout: any;
+    logout: () => (dispatch: Dispatch) => void;
     user: any;
 }
 
@@ -30,11 +30,21 @@ class Header extends React.PureComponent<HeaderProps> {
                             <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
                         </div>
                         <nav>
-                            <Link to={"/topic/create"} >发布话题</Link>
-                            <Link to={"/user/" + this.props.user.username}>{this.props.user.username}</Link>
-                            <a href="javascript:;" onClick={this.props.logout}>退出</a>
-                            <Link to={"register"}>注册</Link>
-                            <Link to={"/login"}>登录</Link>
+                            {
+                                this.props.user.authorized ? (
+                                    <>
+                                        <Link to={"/topic/create"} >发布话题</Link>
+                                        <Link to={"/user/" + this.props.user.username}>{this.props.user.username}</Link>
+                                        <a href="javascript:;" onClick={this.props.logout}>退出</a>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to={"register"}>注册</Link>
+                                        <Link to={"/login"}>登录</Link>
+                                    </>
+                                )
+                            }
+
                         </nav>
                     </div>
                 </div>

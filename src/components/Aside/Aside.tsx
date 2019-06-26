@@ -24,23 +24,23 @@ export default function Aside() {
                 <div className="panel-content">
                     <ul className="info-list">
                         <li>
-                            <a className="text" href="https://rust.cc" rel="nofollow" target="_blank">
+                            <a className="text" href="https://rust.cc" rel="noopener noreferrer" target="_blank">
                                 rust.cc
                             </a>
                         </li>
                         <li>
-                            <a href="https://ruby-china.org" rel="nofollow" target="_blank">
-                                <img src="/static/images/friendly/ruby.png"/>
+                            <a href="https://ruby-china.org" rel="noopener noreferrer" target="_blank">
+                                <img src="/static/images/friendly/ruby.png" alt={""} />
                             </a>
                         </li>
                         <li>
-                            <a href="https://cnodejs.org" rel="nofollow" target="_blank">
-                                <img src="/static/images/friendly/cnode.png"/>
+                            <a href="https://cnodejs.org" rel="noopener noreferrer" target="_blank">
+                                <img src="/static/images/friendly/cnode.png" alt={""} />
                             </a>
                         </li>
                         <li>
-                            <a href="https://gocn.io" rel="nofollow" target="_blank">
-                                <img src="/static/images/friendly/gocn.png"/>
+                            <a href="https://gocn.io" rel="noopener noreferrer" target="_blank">
+                                <img src="/static/images/friendly/gocn.png" alt={""} />
                             </a>
                         </li>
                     </ul>

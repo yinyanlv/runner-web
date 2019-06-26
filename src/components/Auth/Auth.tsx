@@ -46,7 +46,7 @@ class Auth extends React.PureComponent<AuthProps> {
     private _redirectRoute(props: any) {
 
         const {history, location} = props;
-        const {pathname, state} = location;
+        const {pathname} = location;
 
         if (pathname !== '/login') {
             history.push({

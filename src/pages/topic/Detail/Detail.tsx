@@ -17,7 +17,7 @@ class PageTopicDetail extends React.PureComponent {
                                 <div className="info">
                                 <span className="item">• 版块 <span
                                     className="tag tag-category">topicCategoryName</span></span>
-                                    <span className="item">• 作者 <a href={""}>topicUser.username</a></span>
+                                    <span className="item">• 作者 <a href={"/"}>topicUser.username</a></span>
                                     <span className="item">• 发布于 <span className="datetime-ago">topicRtime</span></span>
                                     <span className="item">• topic.commentCount 个回复</span>
                                     <span className="item">• topic.viewCount 次浏览</span>
@@ -45,13 +45,13 @@ class PageTopicDetail extends React.PureComponent {
                         <div className="panel-content">
                             <div className="comment" v-for="(comment, index) in comments">
                                 <div className="avatar">
-                                    <a href={""}><img src="/static/images/avatars/avatar.jpg"/></a>
+                                    <a href={"/"}><img src="/static/images/avatars/avatar.jpg" /></a>
                                 </div>
                                 <div className="info">
                                     <dl>
                                         <dt>
                                             <div className="comment-info">
-                                                <a href={""} className="username">comment.username</a> • index +1 楼
+                                                <a href={"/"} className="username">comment.username</a> • index +1 楼
                                                 • <span className="datetime-ago">comment.rtime</span> <span
                                                 v-if="topicUser.id === comment.userId">• <span
                                                 className="tag">作者</span></span>

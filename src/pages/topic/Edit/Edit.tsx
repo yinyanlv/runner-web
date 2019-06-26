@@ -73,7 +73,7 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                             </div>
                         </div>
                         <div className="btn-line">
-                            <a href="javascript:;" className="btn btn-primary">提交</a>
+                            <span className="btn btn-primary">提交</span>
                         </div>
                     </div>
                 </div>

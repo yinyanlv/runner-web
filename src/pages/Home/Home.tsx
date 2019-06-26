@@ -36,7 +36,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                             return (
                                 <div className="topic" key={item.id}>
                                     <div className="avatar">
-                                        <Link to={item.createBy.url}><img src={item.createBy.avatarUrl}/></Link>
+                                        <Link to={item.createBy.url}><img src={item.createBy.avatarUrl} alt={""} /></Link>
                                     </div>
                                     <div className="info">
                                         <dl>
@@ -59,7 +59,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                                                     最后由
                                                     <Link to={item.lastCommentBy.url}>
                                                         <img
-                                                            src={item.lastCommentBy.avatarUrl}/> {item.lastCommentBy.username}
+                                                            src={item.lastCommentBy.avatarUrl} alt={""} /> {item.lastCommentBy.username}
                                                     </Link>
                                                     回复于
                                                     <span className="datetime-ago">{item.lastCommentTime}</span>

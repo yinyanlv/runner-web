@@ -19,7 +19,7 @@ class Pagination extends PureComponent<PaginationProps>{
                     this.props.handleClick({page: paging.firstPage})
                 }}>«</Link>
                 {
-                    paging.isShowPrevEllipsis && <a className="ellipsis">...</a>
+                    paging.isShowPrevEllipsis && <span className="ellipsis">...</span>
                 }
                 {paging.pageList.map((item) => {
                     return <Link to={""} key={item.page} className={clsx({active: item.isActive})} onClick={() => {
@@ -27,7 +27,7 @@ class Pagination extends PureComponent<PaginationProps>{
                     }}>{item.page}</Link>;
                 })}
                 {
-                    paging.isShowNextEllipsis && <a className="ellipsis">...</a>
+                    paging.isShowNextEllipsis && <span className="ellipsis">...</span>
                 }
                 <Link className={clsx('last', {disabled: paging.isLastPageDisabled})} to={""} onClick={() => {
                     this.props.handleClick({page: paging.lastPage})

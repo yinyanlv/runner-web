@@ -2,9 +2,6 @@ export class EventEmitter {
 
     private _eventsMap: { [key: string]: Set<Function> } = {};
 
-    constructor() {
-    }
-
     private _getEventListenersByName(eventName: string): Set<Function> {
         if (typeof this._eventsMap[eventName] === 'undefined') {
 

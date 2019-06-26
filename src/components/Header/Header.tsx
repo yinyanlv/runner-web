@@ -18,7 +18,7 @@ class Header extends React.PureComponent<HeaderProps> {
                 <div className="frame-wrapper">
                     <div className="header-left">
                         <Link className="logo" to="/">
-                            <img src="/static/images/logo.png"/>
+                            <img src="/static/images/logo.png" alt={""} />
                         </Link>
                         <nav>
                             <Link to={"/"} className="active">首页</Link>
@@ -27,7 +27,7 @@ class Header extends React.PureComponent<HeaderProps> {
                     <div className="header-right">
                         <div className="search">
                             <input className="input-search" type="search" name="keyword" placeholder="请输入关键字" />
-                            <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
+                            <span className="btn btn-search"><i className="fa fa-search"></i></span>
                         </div>
                         <nav>
                             {
@@ -35,7 +35,7 @@ class Header extends React.PureComponent<HeaderProps> {
                                     <>
                                         <Link to={"/topic/create"} >发布话题</Link>
                                         <Link to={"/user/" + this.props.user.username}>{this.props.user.username}</Link>
-                                        <a href="javascript:;" onClick={this.props.logout}>退出</a>
+                                        <span className={"btn"} onClick={this.props.logout}>退出</span>
                                     </>
                                 ) : (
                                     <>

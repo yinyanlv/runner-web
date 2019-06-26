@@ -1,7 +1,7 @@
 import mock from '../mock';
 import jwt from 'jsonwebtoken';
 
-const userDb = {
+const _userDb = {
     users: [{
         username: 'admin',
         password: '111111'

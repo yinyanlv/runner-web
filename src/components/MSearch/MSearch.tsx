@@ -8,7 +8,7 @@ class MSearch extends React.PureComponent {
             <div className="m-search">
                 <div className="search">
                     <input className="input-search" type="search" name="keyword" placeholder="请输入关键字"/>
-                    <a className="btn btn-search" href="javascript:;"><i className="fa fa-search"></i></a>
+                    <span className="btn btn-search"><i className="fa fa-search"></i></span>
                 </div>
             </div>
         );

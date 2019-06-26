@@ -15,7 +15,7 @@ class MHeader extends React.PureComponent<MHeaderProps> {
         return (
             <>
                 <header className="m-frame-header">
-                    <a href="javascript:;" className="btn btn-menu"><i className="fa fa-navicon"></i></a>
+                    <span className="btn btn-menu"><i className="fa fa-navicon"></i></span>
                     <div className="box-btns">
                         {
                             this.props.user.authorized ? (
@@ -31,7 +31,7 @@ class MHeader extends React.PureComponent<MHeaderProps> {
                         }
                     </div>
                     <div className="title">
-                        <Link to={"/"}><img src="/static/images/logo_short.png"/></Link>
+                        <Link to={"/"}><img src="/static/images/logo_short.png" alt="" /></Link>
                     </div>
                 </header>
 
@@ -42,7 +42,7 @@ class MHeader extends React.PureComponent<MHeaderProps> {
                         this.props.user.authorized && (
                             <>
                                 <Link to={"/user/" + this.props.user.username}><span className="icon"><i className="fa fa-user-circle"></i></span> 用户中心</Link>
-                                <a href="javascript:;" onClick={this.props.logout}><span className="icon"><i className="fa fa-sign-out"></i></span> 退出</a>
+                                <span onClick={this.props.logout}><span className="icon"><i className="fa fa-sign-out"></i></span> 退出</span>
                             </>
                         )
                     }

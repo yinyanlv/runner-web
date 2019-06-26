@@ -16,10 +16,6 @@ class App extends PureComponent {
         isMobile: this.isMobile()
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount(): void {
         window.addEventListener('resize', this.handleResize, false);
     }

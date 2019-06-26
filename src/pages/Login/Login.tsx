@@ -24,10 +24,6 @@ class PageLogin extends React.PureComponent<LoginProps> {
         text: '登录'
     }];
 
-    constructor(props: any) {
-        super(props);
-    }
-
     handleKeyUp = (e: any) => {
         if (e.keyCode === 13) {
             this.doLogin();
@@ -130,12 +126,12 @@ class PageLogin extends React.PureComponent<LoginProps> {
                         }
                         <div className="btn-line">
                             <div className="btn-wrapper">
-                                <a href="javascript:;"
+                                <span
                                    className={clsx("btn btn-primary", {"disabled": loginState.isLogin})}
-                                   onClick={this.doLogin}>登录</a>
-                                <a href="javascript:;"
+                                   onClick={this.doLogin}>登录</span>
+                                <span
                                    className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogin})}
-                                   onClick={this.doGithubLogin}>通过 Github 登录</a>
+                                   onClick={this.doGithubLogin}>通过 Github 登录</span>
                             </div>
                         </div>
                     </div>

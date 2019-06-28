@@ -1,6 +1,7 @@
 import mock from '../mock';
 import jwt from 'jsonwebtoken';
 
+// eslint-disable-next-line
 const _userDb = {
     users: [{
         username: 'admin',
@@ -57,7 +58,7 @@ mock.onGet('/api/auth-token').reply((req) => {
                 }
             }
         }]
-        
+
     } catch (err) {
         const error = 'invalid access token detected';
 

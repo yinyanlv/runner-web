@@ -4,4 +4,4 @@ interface Config {
     API_PREFIX: any;
 }
 
-export const config: Config = <any>require(`./${nodeEnv}.config`);
+export const config: Config = require(`./${nodeEnv}.config`);

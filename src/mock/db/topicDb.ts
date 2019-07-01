@@ -47,3 +47,10 @@ const topicDb = {
 mock.onGet('/api/topic-list').reply(() => {
     return [200, topicDb.topics];
 });
+
+mock.onPost('/api/topic/save').reply((params) => {
+
+    return [200, {
+        success: true
+    }];
+});

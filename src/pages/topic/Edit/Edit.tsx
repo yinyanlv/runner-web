@@ -4,16 +4,20 @@ import {connect} from 'react-redux';
 import './Edit.scss';
 import {MdEditor} from '../../../components/MdEditor';
 import {Crumbs} from '../../../components/Crumbs';
-import * as actions from '../../../store/category/category.actions';
+import * as actions from './actions';
+import * as categoryActions from '../../../store/category/category.actions';
 
 interface PageTopicEditProps {
     category: any;
     loadCategories: any;
+    createTopic: (params: any) => (dispatch: any) => void;
 }
 
 class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
 
     state = {
+        category: '',
+        title: '',
         value: ''
     };
 
@@ -28,15 +32,27 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
         this.props.loadCategories();
     }
 
+    handleCategoryChange = (e) => {
+        this.setState({
+            category: e.target.value
+        });
+    };
+
+    handleTitleChange = (e) => {
+        this.setState({
+            title: e.target.value
+        });
+    };
+
     handleEditorChange = (value) => {
         this.setState({
             value
         });
     };
 
-    submit(value) {
-        console.log(value);
-    }
+    submit = () => {
+        this.props.createTopic(this.state);
+    };
 
     render() {
         return (
@@ -49,8 +65,7 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                     <div className="create-topic">
                         <div className="category-line">
                             <label>请选择版块：</label>
-                            <select name="category">
-                                <option value="">请选择</option>
+                            <select name="category" value={this.state.category} onChange={this.handleCategoryChange}>
                                 {
                                     this.props.category.categories && this.props.category.categories.map((item) => {
                                         return <option key={item.code} value={item.code}>{item.name}</option>;
@@ -61,7 +76,7 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                         <div className="title-line">
                             <label>标题：</label>
                             <div className="input-wrapper">
-                                <input type="text" name="title" placeholder="请输入一个简洁、明确的标题"/>
+                                <input type="text" name="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="请输入一个简洁、明确的标题"/>
                             </div>
                         </div>
                         <div className="editor-wrapper">
@@ -73,7 +88,7 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                             </div>
                         </div>
                         <div className="btn-line">
-                            <span className="btn btn-primary">提交</span>
+                            <span className="btn btn-primary" onClick={this.submit}>提交</span>
                         </div>
                     </div>
                 </div>
@@ -92,7 +107,8 @@ function mapStateToProps({category}) {
 function mapDispatchToProps(dispatch) {
 
     return bindActionCreators({
-        loadCategories: actions.loadCategories
+        loadCategories: categoryActions.loadCategories,
+        createTopic: actions.createTopic
     }, dispatch);
 }
 

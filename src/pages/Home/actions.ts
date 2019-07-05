@@ -4,11 +4,8 @@ import {config} from '../../config';
 export const HOME_LOAD = 'home:load';
 export const HOME_LOADING = 'home:loading';
 export const HOME_LOADED = 'home:loaded';
-export const HOME_CHANGE_TAB = 'home:change tab';
-export const HOME_CHANGE_PAGE = 'home:change page';
 
-export function loadTopics() {
-
+export function loadTopics(params) {
     return (dispatch) => {
 
         dispatch({
@@ -16,7 +13,7 @@ export function loadTopics() {
             payload: true
         });
 
-        axios.get(config.API_PREFIX + '/topic-list').then((res) => {
+        axios.get(config.API_PREFIX + '/topic-list', params).then((res) => {
 
             dispatch({
                 type: HOME_LOADING,
@@ -25,7 +22,16 @@ export function loadTopics() {
 
             dispatch({
                 type: HOME_LOADED,
-                payload: res.data
+                payload: {
+                    topics: res.data,
+                    paging: {
+                        total: 500,
+                        currentPage: params.page,
+                        perPageNumber: 20,
+                        baseUrl: ''
+                    },
+                    tab: params.tab
+                }
             });
         });
     };

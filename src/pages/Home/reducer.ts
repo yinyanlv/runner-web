@@ -2,13 +2,23 @@ import * as actions from './actions';
 
 const initialState = {
     tabs: [{
-        id: 'home',
-        text: '首页',
+        id: 'all',
+        text: '全部',
         isActive: true,
         url: ''
     }, {
-        id: 'about',
-        text: '关于',
+        id: 'ask',
+        text: '问答',
+        isActive: false,
+        url: ''
+    }, {
+        id: 'share',
+        text: '分享',
+        isActive: false,
+        url: ''
+    }, {
+        id: 'job',
+        text: '招聘',
         isActive: false,
         url: ''
     }],
@@ -29,36 +39,25 @@ function home(state = initialState, action: any) {
 
             return {
                 ...state,
-                topics: action.payload
+                topics: action.payload.topics,
+                tabs: getTabs(state.tabs, action.payload.tab),
+                paging: action.payload.paging
             };
         case actions.HOME_LOADING:
             return {
                 ...state,
                 isLoading: action.payload
             };
-        case actions.HOME_CHANGE_TAB:
-            return {
-                ...state,
-                tabs: getTabs(state.tabs, action.payload)
-            };
-        case actions.HOME_CHANGE_PAGE:
-            return {
-                ...state,
-                paging: {
-                    ...state.paging,
-                    currentPage: action.payload.page
-                }
-            };
         default:
             return state;
     }
 }
 
-function getTabs(tabs, curItem){
+function getTabs(tabs, tabId){
 
     let result: any = [];
     tabs && tabs.forEach((item) => {
-        if (curItem.id === item.id) {
+        if (tabId === item.id) {
             item.isActive = true;
         } else {
             item.isActive = false;

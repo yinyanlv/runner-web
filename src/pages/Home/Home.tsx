@@ -1,24 +1,67 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import {Pagination} from '../../components/Pagination';
 import {Tabs} from './Tabs';
 import * as actions from './actions';
 
-interface PageHomeProps {
+interface PageHomeProps extends RouteComponentProps{
     loadTopics: any;
     home: any;
-    handleClickTab: any;
-    handleClickPage: any;
 }
 
 class PageHome extends React.PureComponent<PageHomeProps> {
 
+    state = {
+        tab: 'all',
+        page: 1
+    };
 
     componentDidMount(): void {
+        const queryParams = new URLSearchParams(this.props.location.search);
+        const tab = queryParams.get('tab') || 'all';
+        const page = queryParams.get('page') || 1;
 
-        this.props.loadTopics();
+        this.setState({
+            tab,
+            page
+        });
+
+        this.props.loadTopics({
+            tab,
+            page
+        });
+    }
+
+    handleClickTab = (item) => {
+
+        if (item.id !== this.state.tab) {
+            const params = {
+                tab: item.id,
+                page: 1
+            };
+            this.setState(params);
+            this.changeLocation(params);
+            this.props.loadTopics(params);
+        }
+    };
+
+    handleClickPage = (item) => {
+
+        if (item.page !== this.state.page) {
+            const params = {
+                tab: this.state.tab,
+                page: item.page
+            };
+            this.setState(params);
+            this.changeLocation(params);
+            this.props.loadTopics(params);
+        }
+    };
+
+    changeLocation(params) {
+        this.props.history.replace(`/?tab=${params.tab}&page=${params.page}`);
     }
 
     render() {
@@ -26,7 +69,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
         return (
             <>
                 <div className="panel-header">
-                    <Tabs items={this.props.home.tabs} handleClick={this.props.handleClickTab}/>
+                    <Tabs items={this.props.home.tabs} handleClick={this.handleClickTab}/>
                 </div>
                 <div className="panel-content">
 
@@ -79,7 +122,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                     }
                 </div>
                 <div className="panel-footer">
-                    <Pagination paging={this.props.home.paging} handleClick={this.props.handleClickPage} />
+                    <Pagination paging={this.props.home.paging} handleClick={this.handleClickPage} />
                 </div>
             </>
         );
@@ -96,21 +139,7 @@ function mapStateToProps({home}) {
 function mapDispatchToProps(dispatch) {
 
     return bindActionCreators({
-        loadTopics: actions.loadTopics,
-
-        handleClickTab: (item) => {
-            return {
-                type: actions.HOME_CHANGE_TAB,
-                payload: item
-            }
-        },
-
-        handleClickPage: (page) => {
-            return {
-                type: actions.HOME_CHANGE_PAGE,
-                payload: page
-            }
-        }
+        loadTopics: actions.loadTopics
     }, dispatch);
 }
 

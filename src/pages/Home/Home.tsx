@@ -36,26 +36,32 @@ class PageHome extends React.PureComponent<PageHomeProps> {
 
     handleClickTab = (item) => {
 
-        if (item.id !== this.state.tab) {
-            const params = {
-                tab: item.id,
-                page: 1
-            };
-            this.setState(params);
+        const params = {
+            tab: item.id,
+            page: 1
+        };
+
+        this.setState(params, () => {
             this.changeLocation(params);
+        });
+
+        if (item.id !== this.state.tab) {
             this.props.loadTopics(params);
         }
     };
 
     handleClickPage = (item) => {
 
-        if (item.page !== this.state.page) {
-            const params = {
-                tab: this.state.tab,
-                page: item.page
-            };
-            this.setState(params);
+        const params = {
+            tab: this.state.tab,
+            page: item.page
+        };
+
+        this.setState(params, () => {
             this.changeLocation(params);
+        });
+
+        if (item.page !== this.state.page) {
             this.props.loadTopics(params);
         }
     };

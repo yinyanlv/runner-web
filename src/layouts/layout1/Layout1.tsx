@@ -1,6 +1,5 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router';
-import './Layout1.scss';
 import {Header} from '../../components/Header';
 import {MHeader} from '../../components/MHeader';
 import {Footer} from '../../components/Footer';
@@ -34,16 +33,14 @@ class Layout1 extends React.PureComponent {
                                         }
                                         <section>
                                             <div className="block-main">
-                                                <div className="panel">
-                                                    <Switch>
-                                                        <Route path={"/login"} exact={true} component={PageLogin}/>
-                                                        <Route path={"/"} exact={true} component={PageHome}/>
-                                                        <Route path={"/topic/create"} exact={true} component={PageTopicEdit}/>
-                                                        <Route path={"/topic/create/:id"} exact={true} component={PageTopicEdit}/>
-                                                        <Route path={"/topic/detail/:id"} exact={true} component={PageTopicDetail}/>
-                                                        <Redirect to={"/404"}/>
-                                                    </Switch>
-                                                </div>
+                                                <Switch>
+                                                    <Route path={"/login"} exact={true} component={PageLogin}/>
+                                                    <Route path={"/"} exact={true} component={PageHome}/>
+                                                    <Route path={"/topic/create"} exact={true} component={PageTopicEdit}/>
+                                                    <Route path={"/topic/create/:id"} exact={true} component={PageTopicEdit}/>
+                                                    <Route path={"/topic/detail/:id"} exact={true} component={PageTopicDetail}/>
+                                                    <Redirect to={"/404"}/>
+                                                </Switch>
                                             </div>
                                             <Aside/>
                                         </section>
@@ -56,7 +53,6 @@ class Layout1 extends React.PureComponent {
                     }
                 }
             </AppContext.Consumer>
-
         );
     }
 }

@@ -73,7 +73,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
     render() {
 
         return (
-            <>
+            <div className="panel">
                 <div className="panel-header">
                     <Tabs items={this.props.home.tabs} handleClick={this.handleClickTab}/>
                 </div>
@@ -91,7 +91,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                                         <dl>
                                             <dt>
                                                 <span className="tag tag-category">{item.categoryName}</span>
-                                                <Link to={item.url}> {item.title}</Link>
+                                                <Link to={'/topic/detail/' + item.id}> {item.title}</Link>
                                             </dt>
                                             <dd>
                                                 <span className="item">
@@ -130,7 +130,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                 <div className="panel-footer">
                     <Pagination paging={this.props.home.paging} handleClick={this.handleClickPage} />
                 </div>
-            </>
+            </div>
         );
     }
 }

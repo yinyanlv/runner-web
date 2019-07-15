@@ -86,7 +86,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
         const loginState = this.props.login;
 
         return (
-            <>
+            <div className="panel">
                 <div className="panel-header">
                     <Crumbs items={this.crumbs} />
                 </div>
@@ -136,7 +136,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }

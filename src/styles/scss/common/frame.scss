@@ -87,6 +87,17 @@ a {
   }
 }
 
+.frame-content {
+  padding: 6.5rem 0 0;
+  width: 100%;
+
+  .block-main {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+  }
+}
+
 .panel {
   width: 100%;
   height: 100%;
@@ -106,6 +117,7 @@ a {
       margin: .8rem 1rem;
       padding: 0 .8rem;
     }
+
     h4, .title {
       display: block;
       margin: 0;
@@ -660,14 +672,14 @@ a {
   }
 }
 
-.guide-login{
+.guide-login {
   background: #fff;
   font-size: 1.3rem;
   padding: 1rem;
   height: 5rem;
   line-height: 3rem;
 
-  a{
+  a {
     color: $theme-color;
     text-decoration: underline;
   }
@@ -760,6 +772,15 @@ a {
           float: left;
         }
       }
+    }
+  }
+
+  .frame-content {
+    padding: 4.5rem 0 0;
+
+    .block-main {
+      width: 100%;
+      display: block;
     }
   }
 }

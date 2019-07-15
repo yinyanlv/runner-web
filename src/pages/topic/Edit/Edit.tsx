@@ -56,9 +56,9 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
 
     render() {
         return (
-            <>
+            <div className="panel">
                 <div className="panel-header">
-                    <Crumbs items={this.crumbs} />
+                    <Crumbs items={this.crumbs}/>
                 </div>
 
                 <div className="panel-content">
@@ -76,7 +76,8 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                         <div className="title-line">
                             <label>标题：</label>
                             <div className="input-wrapper">
-                                <input type="text" name="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="请输入一个简洁、明确的标题"/>
+                                <input type="text" name="title" value={this.state.title}
+                                       onChange={this.handleTitleChange} placeholder="请输入一个简洁、明确的标题"/>
                             </div>
                         </div>
                         <div className="editor-wrapper">
@@ -92,7 +93,7 @@ class PageTopicEdit extends React.PureComponent<PageTopicEditProps> {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }

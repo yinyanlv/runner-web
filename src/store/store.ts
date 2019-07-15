@@ -2,6 +2,7 @@ import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import login from '../pages/Login/reducer';
 import home from '../pages/Home/reducer';
+import topicDetail from '../pages/topic/Detail/reducer';
 import user from './user/user.reducer';
 import category from './category/category.reducer';
 
@@ -15,7 +16,8 @@ const reducers = combineReducers({
     login,
     home,
     user,
-    category
+    category,
+    topicDetail
 });
 
 const enhancer = composeEnhancer(applyMiddleware(thunk));

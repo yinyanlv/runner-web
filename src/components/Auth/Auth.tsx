@@ -6,6 +6,8 @@ import AppContext from '../../AppContext';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../store/user/user.actions';
 
+const notNeedValidateUrls = ['/login', '/register'];
+
 interface AuthProps extends RouteComponentProps, DispatchProp {
     logout: () => void;
     setUserData: (user: any) => void;
@@ -48,7 +50,7 @@ class Auth extends React.PureComponent<AuthProps> {
         const {history, location} = props;
         const {pathname} = location;
 
-        if (pathname !== '/login') {
+        if (!notNeedValidateUrls.includes(pathname)) {
             history.push({
                 pathname: '/login',
                 state: {

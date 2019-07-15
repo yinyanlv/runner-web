@@ -7,6 +7,7 @@ import {Aside} from '../../components/Aside';
 import {MSearch} from '../../components/MSearch';
 import {ScrollToTop} from '../../components/ScrollToTop';
 import {PageLogin} from '../../pages/Login';
+import {PageRegister} from '../../pages/Register';
 import {PageHome} from '../../pages/Home';
 import {PageTopicEdit} from '../../pages/topic/Edit';
 import {PageTopicDetail} from '../../pages/topic/Detail';
@@ -35,6 +36,7 @@ class Layout1 extends React.PureComponent {
                                             <div className="block-main">
                                                 <Switch>
                                                     <Route path={"/login"} exact={true} component={PageLogin}/>
+                                                    <Route path={"/register"} exact={true} component={PageRegister}/>
                                                     <Route path={"/"} exact={true} component={PageHome}/>
                                                     <Route path={"/topic/create"} exact={true} component={PageTopicEdit}/>
                                                     <Route path={"/topic/create/:id"} exact={true} component={PageTopicEdit}/>

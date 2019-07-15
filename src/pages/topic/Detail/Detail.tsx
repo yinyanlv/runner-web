@@ -1,97 +1,94 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {withRouter, RouteComponentProps, Link} from 'react-router-dom';
 import './Detail.scss';
+import * as actions from './actions';
+import {Reply} from './Reply';
+import {Comments} from './Comments';
 
-class PageTopicDetail extends React.PureComponent {
+interface PageTopicDetailProps extends RouteComponentProps {
+    loadTopic: (topicId: string) => (dispatch: any) => void;
+    topicDetail: any
+}
+
+class PageTopicDetail extends React.PureComponent<PageTopicDetailProps> {
+
+    componentDidMount() {
+
+        const topicId = this.props.match.params['id'];
+
+        this.props.loadTopic(topicId);
+    }
+
     render() {
+        const topic = this.props.topicDetail;
         return (
             <>
                 <div className="panel">
                     <article className="article">
                         <div className="article-header">
                             <div className="title">
-                                <span className="tag" v-if="topicCategory==='office'">官方</span>
-                                <h3>topic.title</h3>
+                                {topic.category === 'office' && <span className="tag">官方</span>}
+                                <h3>{topic.title}</h3>
                             </div>
                             <div className="info">
                                 <span className="item">• 版块 <span
-                                    className="tag tag-category">topicCategoryName</span></span>
-                                <span className="item">• 作者 <a href={"/"}>topicUser.username</a></span>
-                                <span className="item">• 发布于 <span className="datetime-ago">topicRtime</span></span>
-                                <span className="item">• topic.commentCount 个回复</span>
-                                <span className="item">• topic.viewCount 次浏览</span>
+                                    className="tag tag-category">{topic.categoryName}</span></span>
+                                <span className="item">• 作者 <Link to={"/"}>{topic.createBy.username}</Link></span>
+                                <span className="item">• 发布于 <span className="datetime-ago">{topic.createTime}</span></span>
+                                <span className="item">• {topic.commentCount} 个回复</span>
+                                <span className="item">• {topic.viewCount} 次浏览</span>
                             </div>
                             <div className="operator operator-topic">
                                 <div>
-                                    {/*<span class="btn btn-edit"><i class="fa fa-edit"></i> 编辑</span>*/}
-                                    {/*<span class="btn btn-delete"><i class="fa fa-trash"></i> 删除</span>*/}
-                                    {/*<span class="btn btn-collect"><i class="fa fa-star"></i><span class="text">已收藏</span></span>*/}
-                                    {/*<span class="btn btn-collect"><i class="fa fa fa-star-o"></i><span class="text">收藏</span></span>*/}
+                                    <span className="btn btn-edit">
+                                        <i className="fa fa-edit"></i> 编辑
+                                    </span>
+                                    <span className="btn btn-delete">
+                                        <i className="fa fa-trash"></i> 删除
+                                    </span>
+                                    <span className="btn btn-collect">
+                                        <i className="fa fa-star"></i><span className="text">已收藏</span>
+                                    </span>
+                                    <span className="btn btn-collect">
+                                        <i className="fa fa fa-star-o"></i><span className="text">收藏</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div className="article-content">
                             <div className="markdown-body">
-                                <div className="markdown-text" v-html="topic.content"></div>
+                                <div className="markdown-text">
+                                    {topic.content}
+                                </div>
                             </div>
                         </div>
                     </article>
                 </div>
 
-                <div className="panel">
-                    <div className="panel-header">
-                        <div className="title"><span>topic.commentCount</span> 条回复</div>
-                    </div>
-                    <div className="panel-content">
-                        <div className="comment" v-for="(comment, index) in comments">
-                            <div className="avatar">
-                                <a href={"/"}><img src="/static/images/avatars/avatar.jpg" alt={""} /></a>
-                            </div>
-                            <div className="info">
-                                <dl>
-                                    <dt>
-                                        <div className="comment-info">
-                                            <a href={"/"} className="username">comment.username</a> • index +1 楼
-                                            • <span className="datetime-ago">comment.rtime</span> <span
-                                            v-if="topicUser.id === comment.userId">• <span
-                                            className="tag">作者</span></span>
-                                        </div>
-                                        <div className="operator operator-comment">
-                                            {/*<span class="btn btn-edit"><i class="fa fa-edit"></i> 编辑</span>*/}
-                                            {/*<span class="btn btn-delete"><i class="fa fa-trash"></i> 删除</span>*/}
-                                        </div>
-                                    </dt>
-                                    <dd>
-                                        <div className="markdown-body" v-html="comment.content"></div>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
+                <Comments items={topic.comments} />
 
-                        <div v-if="topic.commentCount === 0" className="no-data">
-                            暂无回复
-                        </div>
-                    </div>
-                </div>
+                <Reply />
 
-                <div className="panel">
-                    <div className="panel-header">
-                        <div className="title">添加回复</div>
-                    </div>
-                    <div className="panel-content">
-                        <div className="editor-wrapper">
-                            <div className="editor-wrapper-inner">
-                                {/*<mavon-editor></mavon-editor>*/}
-                            </div>
-                            <div className="btn-line">
-                                <span className="btn btn-primary btn-reply-topic">回复</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="panel guide-login">请先登录再发表评论。<a href={"/login"}>登录</a></div>
+                <div className="panel guide-login">请先登录再发表评论。<Link to={"/login"}>登录</Link></div>
             </>
         );
     }
 }
 
-export default PageTopicDetail;
+function mapStateToProps({topicDetail}) {
+
+    return {
+        topicDetail
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+
+    return bindActionCreators({
+        loadTopic: actions.loadTopic
+    }, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PageTopicDetail));

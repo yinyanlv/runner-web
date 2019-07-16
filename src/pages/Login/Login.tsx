@@ -78,7 +78,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
                 <div className="panel-content">
                     <div className="frame-form">
                         <Formsy ref={this.formRef} onChange={this.onHandleChange} onValidSubmit={this.submit}>
-                            <Input name="username" label={"用户名"} required="isExisty"
+                            <Input name="username" label={"用户名"} required
                                    handleKeyUp={this.handleKeyUp}
                                    validations={{
                                        minLength: 2,
@@ -87,7 +87,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
                                    validationErrors={{
                                        minLength: '用户名最少2个字符',
                                        maxLength: '用户名最多20个字符',
-                                       isExisty: '用户名为必填项'
+                                       isDefaultRequiredValue: '用户名为必填项'
                                    }}
                             />
                             <Input name="password" type="password" label={"密码"} autoComplete="off" required
@@ -98,7 +98,8 @@ class PageLogin extends React.PureComponent<LoginProps> {
                                    }}
                                    validationErrors={{
                                        minLength: '密码最少6个字符',
-                                       maxLength: '用户名最多20个字符'
+                                       maxLength: '密码最多20个字符',
+                                       isDefaultRequiredValue: '密码为必填项'
                                    }}
                             />
                             <div className="help-line">

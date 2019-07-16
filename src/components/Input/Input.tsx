@@ -31,8 +31,14 @@ class Input extends React.Component<InputProps> {
     render() {
         const props = this.props;
         const errorMessage = props.getErrorMessage();
-        const isShowError = props.showError();
+        let isShowError = props.showError();
         const type = props.type === 'password' ? 'password' : 'text';
+
+        if (!isShowError) {
+            if (props.required && props.getValue() === '' && !props.isPristine()) {
+                isShowError = true;
+            }
+        }
 
         return (
             <>

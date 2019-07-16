@@ -85,7 +85,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                             return (
                                 <div className="topic" key={item.id}>
                                     <div className="avatar">
-                                        <Link to={item.createBy.url}><img src={item.createBy.avatarUrl} alt={""} /></Link>
+                                        <Link to={item.createBy.url || ''}><img src={item.createBy.avatarUrl} alt={""} /></Link>
                                     </div>
                                     <div className="info">
                                         <dl>

@@ -1,1 +1,3 @@
-export {default as PageTopicEdit} from './Edit';
+import PageTopicEdit from './Edit';
+
+export default PageTopicEdit;

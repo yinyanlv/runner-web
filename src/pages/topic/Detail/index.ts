@@ -1,1 +1,3 @@
-export {default as PageTopicDetail} from './Detail';
+import PageTopicDetail from './Detail';
+
+export default PageTopicDetail;

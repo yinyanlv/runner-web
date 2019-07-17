@@ -1,17 +1,39 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router';
+import Loadable from 'react-loadable';
+import {Loading} from '../../components/Loading';
 import {Header} from '../../components/Header';
 import {MHeader} from '../../components/MHeader';
 import {Footer} from '../../components/Footer';
 import {Aside} from '../../components/Aside';
 import {MSearch} from '../../components/MSearch';
 import {ScrollToTop} from '../../components/ScrollToTop';
-import {PageLogin} from '../../pages/Login';
-import {PageRegister} from '../../pages/Register';
-import {PageHome} from '../../pages/Home';
-import {PageTopicEdit} from '../../pages/topic/Edit';
-import {PageTopicDetail} from '../../pages/topic/Detail';
 import AppContext from '../../AppContext';
+
+const PageLogin = Loadable({
+    loader: () => import('../../pages/Login'),
+    loading: Loading
+});
+
+const PageRegister = Loadable({
+    loader: () => import('../../pages/Register'),
+    loading: Loading
+});
+
+const PageHome = Loadable({
+    loader: () => import('../../pages/Home'),
+    loading: Loading
+});
+
+const PageTopicEdit = Loadable({
+    loader: () => import('../../pages/topic/Edit'),
+    loading: Loading
+});
+
+const PageTopicDetail = Loadable({
+    loader: () => import('../../pages/topic/Detail'),
+    loading: Loading
+});
 
 class Layout1 extends React.PureComponent {
 
@@ -23,9 +45,9 @@ class Layout1 extends React.PureComponent {
                         return (
                             <>
                                 <section>
-                                {
-                                    context.isMobile ?  <MHeader/> : <Header/>
-                                }
+                                    {
+                                        context.isMobile ? <MHeader/> : <Header/>
+                                    }
                                 </section>
                                 <section className="frame-content">
                                     <div className="frame-wrapper">
@@ -38,9 +60,12 @@ class Layout1 extends React.PureComponent {
                                                     <Route path={"/login"} exact={true} component={PageLogin}/>
                                                     <Route path={"/register"} exact={true} component={PageRegister}/>
                                                     <Route path={"/"} exact={true} component={PageHome}/>
-                                                    <Route path={"/topic/create"} exact={true} component={PageTopicEdit}/>
-                                                    <Route path={"/topic/create/:id"} exact={true} component={PageTopicEdit}/>
-                                                    <Route path={"/topic/detail/:id"} exact={true} component={PageTopicDetail}/>
+                                                    <Route path={"/topic/create"} exact={true}
+                                                           component={PageTopicEdit}/>
+                                                    <Route path={"/topic/create/:id"} exact={true}
+                                                           component={PageTopicEdit}/>
+                                                    <Route path={"/topic/detail/:id"} exact={true}
+                                                           component={PageTopicDetail}/>
                                                     <Redirect to={"/404"}/>
                                                 </Switch>
                                             </div>
@@ -49,7 +74,7 @@ class Layout1 extends React.PureComponent {
                                     </div>
                                 </section>
                                 <Footer/>
-                                <ScrollToTop delayInMs={30} scrollStepInPx={50} />
+                                <ScrollToTop delayInMs={30} scrollStepInPx={50}/>
                             </>
                         );
                     }

@@ -1,1 +1,3 @@
-export {default as PageLogin} from './Login';
+import PageLogin from './Login';
+
+export default PageLogin;

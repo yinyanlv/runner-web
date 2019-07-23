@@ -19,18 +19,18 @@ class PageLogin extends React.PureComponent<LoginProps> {
 
     formRef: any;
 
-    constructor(props) {
-        super(props);
-
-        this.formRef = React.createRef();
-    }
-
     crumbs: any[] = [{
         text: '首页',
         url: '/'
     }, {
         text: '登录'
     }];
+
+    constructor(props) {
+        super(props);
+
+        this.formRef = React.createRef();
+    }
 
     handleKeyUp = (e: any) => {
         if (e.keyCode === 13) {
@@ -46,7 +46,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
 
     doLogin = () => {
 
-        if (this.props.login.isLogin) {
+        if (this.props.login.isLogining) {
             return;
         }
 
@@ -55,7 +55,7 @@ class PageLogin extends React.PureComponent<LoginProps> {
 
     doGithubLogin = () => {
 
-        if (this.props.login.isGithubLogin) {
+        if (this.props.login.isGithubLogining) {
             return;
         }
 
@@ -63,7 +63,6 @@ class PageLogin extends React.PureComponent<LoginProps> {
     };
 
     submit = (params: any) => {
-        console.log(params);
         this.props.submitLogin(params);
     };
 
@@ -119,10 +118,10 @@ class PageLogin extends React.PureComponent<LoginProps> {
                             <div className="btn-line">
                                 <div className="btn-wrapper">
                                 <span
-                                    className={clsx("btn btn-primary", {"disabled": loginState.isLogin})}
+                                    className={clsx("btn btn-primary", {"disabled": loginState.isLogining})}
                                     onClick={this.doLogin}>登录</span>
                                     <span
-                                        className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogin})}
+                                        className={clsx("btn btn-primary", {"disabled": loginState.isGithubLogining})}
                                         onClick={this.doGithubLogin}>通过 Github 登录</span>
                                 </div>
                             </div>

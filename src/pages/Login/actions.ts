@@ -2,7 +2,7 @@ import jwtService from '../../services/jwtService';
 import history from '../../history';
 import {USER_SET_USER_DATA} from '../../store/user/user.actions';
 
-export const LOGIN_LOGINNING = 'login:loginning';
+export const LOGIN_LOGINING = 'login:logining';
 export const LOGIN_SUCCESS = 'login:success';
 export const LOGIN_ERROR = 'login:error';
 
@@ -25,7 +25,7 @@ export function submitLogin({username, password}) {
                 });
 
                 dispatch({
-                    type: LOGIN_LOGINNING,
+                    type: LOGIN_LOGINING,
                     payload: false
                 });
 

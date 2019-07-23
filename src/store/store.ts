@@ -1,6 +1,7 @@
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import login from '../pages/Login/reducer';
+import register from '../pages/Register/reducer';
 import home from '../pages/Home/reducer';
 import topicDetail from '../pages/topic/Detail/reducer';
 import user from './user/user.reducer';
@@ -14,6 +15,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 
 const reducers = combineReducers({
     login,
+    register,
     home,
     user,
     category,

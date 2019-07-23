@@ -2,14 +2,14 @@ import * as actions from './actions';
 
 const initialState = {
     errorMessage: '',
-    isLogin: false,
-    isGithubLogin: false
+    isLogining: false,
+    isGithubLogining: false
 };
 
 function login(state: any = initialState, action: any) {
 
     switch (action.type) {
-        case actions.LOGIN_LOGINNING:
+        case actions.LOGIN_LOGINING:
             return {
                 ...state,
                 isLogin: action.payload

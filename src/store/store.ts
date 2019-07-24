@@ -9,9 +9,12 @@ import category from './category/category.reducer';
 
 declare const window: any;
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+const composeEnhancer =
+    process.env.NODE_ENV !== 'production' &&
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true
-}) || compose;
+}) : compose;
 
 const reducers = combineReducers({
     login,

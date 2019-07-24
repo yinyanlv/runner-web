@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -17,7 +17,7 @@ interface LoginProps {
 
 class PageLogin extends React.PureComponent<LoginProps> {
 
-    formRef: any;
+    formRef: RefObject<any>;
 
     crumbs: any[] = [{
         text: '首页',

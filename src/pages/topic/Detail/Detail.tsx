@@ -2,6 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter, RouteComponentProps, Link} from 'react-router-dom';
+import {MdView} from '../../../components/MdView';
 import './Detail.scss';
 import * as actions from './actions';
 import {Reply} from './Reply';
@@ -35,7 +36,7 @@ class PageTopicDetail extends React.PureComponent<PageTopicDetailProps> {
                             <div className="info">
                                 <span className="item">• 版块 <span
                                     className="tag tag-category">{topic.categoryName}</span></span>
-                                <span className="item">• 作者 <Link to={"/"}>{topic.createBy.username}</Link></span>
+                                <span className="item">• 作者 <Link to={"/"}>{topic.createBy}</Link></span>
                                 <span className="item">• 发布于 <span className="datetime-ago">{topic.createTime}</span></span>
                                 <span className="item">• {topic.commentCount} 个回复</span>
                                 <span className="item">• {topic.viewCount} 次浏览</span>
@@ -60,14 +61,14 @@ class PageTopicDetail extends React.PureComponent<PageTopicDetailProps> {
                         <div className="article-content">
                             <div className="markdown-body">
                                 <div className="markdown-text">
-                                    {topic.content}
+                                    <MdView data={topic.content} />
                                 </div>
                             </div>
                         </div>
                     </article>
                 </div>
 
-                <Comments items={topic.comments} />
+                <Comments items={topic.comments} count={topic.commentCount} />
 
                 <Reply />
 

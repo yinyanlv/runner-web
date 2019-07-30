@@ -50,7 +50,15 @@ class Auth extends React.PureComponent<AuthProps> {
         const {history, user, location} = props;
         const {pathname, state} = location;
 
-        if (user.role === 'guest') {  // 如果该用户未登录，访问无权限的页面时，重定向至登录页
+        if (user.authorized) {  // 如果该用户已登录，访问无权限的页面时，重定向至redirectUrl或首页
+
+            const redirectUrl = state.redirectUrl ? state.redirectUrl : '/';
+
+            history.push({
+                pathname: redirectUrl
+            });
+        } else {  // 如果该用户未登录，访问无权限的页面时，重定向至登录页
+
             if (!notNeedLoginUrls.includes(pathname)) {
                 history.push({
                     pathname: '/login',
@@ -59,12 +67,6 @@ class Auth extends React.PureComponent<AuthProps> {
                     }
                 });
             }
-        } else {  // 如果该用户已登录，访问无权限的页面时，重定向至redirectUrl或首页
-            const redirectUrl = state.redirectUrl ? state.redirectUrl : '/';
-
-            history.push({
-                pathname: redirectUrl
-            });
         }
     }
 
@@ -82,7 +84,7 @@ class Auth extends React.PureComponent<AuthProps> {
                 });
         });
 
-        jwtService.on('unauthorized',  () => {
+        jwtService.on('unauthorized', () => {
             this.props.logout();
         });
 

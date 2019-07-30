@@ -59,6 +59,7 @@
     "@types/react-highlight": "^0.12.1",
     "@types/react-loadable": "^5.5.1",
     "@types/react-redux": "^7.0.9",
+    "@types/react-router-config": "^5.0.0",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-transition-group": "^2.9.2",
     "node-sass": "^4.12.0",

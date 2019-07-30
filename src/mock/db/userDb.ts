@@ -26,7 +26,8 @@ mock.onPost('/api/login').reply((req) => {
             success: true,
             data: {
                 user: {
-                    username: data.username
+                    username: data.username,
+                    role: 'admin'
                 },
                 accessToken: accessToken
             }
@@ -54,7 +55,8 @@ mock.onGet('/api/auth-token').reply((req) => {
             data: {
                 accessToken: updatedAccessToken,
                 user: {
-                    username: username
+                    username: username,
+                    role: 'admin'
                 }
             }
         }]

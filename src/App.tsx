@@ -9,6 +9,7 @@ import './App.scss';
 import {Auth} from './components/Auth';
 import {Layout1} from './layouts/layout1';
 import {PageError} from './pages/Error';
+import {routes} from './layouts/layout1/routes';
 
 class App extends PureComponent {
 
@@ -38,7 +39,8 @@ class App extends PureComponent {
     render() {
         return (
             <AppContext.Provider value={{
-                isMobile: this.state.isMobile
+                isMobile: this.state.isMobile,
+                routes: routes
             }}>
                 <Provider store={store}>
                     <Router history={history}>

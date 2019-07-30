@@ -99,7 +99,6 @@ class JwtService extends EventEmitter {
     }
 
     logout(): void {
-        console.log('--- logout ---');
         this._clearSession();
     }
 

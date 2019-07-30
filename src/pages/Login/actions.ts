@@ -19,6 +19,7 @@ export function submitLogin({username, password}) {
                 dispatch({
                     type: USER_SET_USER_DATA,
                     payload: {
+                        role: user.role,
                         username: user.username,
                         authorized: true
                     }

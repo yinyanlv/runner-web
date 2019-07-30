@@ -1,7 +1,5 @@
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router';
-import Loadable from 'react-loadable';
-import {Loading} from '../../components/Loading';
+import {renderRoutes} from 'react-router-config';
 import {Header} from '../../components/Header';
 import {MHeader} from '../../components/MHeader';
 import {Footer} from '../../components/Footer';
@@ -9,31 +7,7 @@ import {Aside} from '../../components/Aside';
 import {MSearch} from '../../components/MSearch';
 import {ScrollToTop} from '../../components/ScrollToTop';
 import AppContext from '../../AppContext';
-
-const PageLogin = Loadable({
-    loader: () => import('../../pages/Login'),
-    loading: Loading
-});
-
-const PageRegister = Loadable({
-    loader: () => import('../../pages/Register'),
-    loading: Loading
-});
-
-const PageHome = Loadable({
-    loader: () => import('../../pages/Home'),
-    loading: Loading
-});
-
-const PageTopicEdit = Loadable({
-    loader: () => import('../../pages/topic/Edit'),
-    loading: Loading
-});
-
-const PageTopicDetail = Loadable({
-    loader: () => import('../../pages/topic/Detail'),
-    loading: Loading
-});
+import {routes} from './routes';
 
 class Layout1 extends React.PureComponent {
 
@@ -56,18 +30,9 @@ class Layout1 extends React.PureComponent {
                                         }
                                         <section>
                                             <div className="block-main">
-                                                <Switch>
-                                                    <Route path={"/login"} exact={true} component={PageLogin}/>
-                                                    <Route path={"/register"} exact={true} component={PageRegister}/>
-                                                    <Route path={"/"} exact={true} component={PageHome}/>
-                                                    <Route path={"/topic/create"} exact={true}
-                                                           component={PageTopicEdit}/>
-                                                    <Route path={"/topic/create/:id"} exact={true}
-                                                           component={PageTopicEdit}/>
-                                                    <Route path={"/topic/detail/:id"} exact={true}
-                                                           component={PageTopicDetail}/>
-                                                    <Redirect to={"/404"}/>
-                                                </Switch>
+                                                {
+                                                    renderRoutes(routes)
+                                                }
                                             </div>
                                             <Aside/>
                                         </section>

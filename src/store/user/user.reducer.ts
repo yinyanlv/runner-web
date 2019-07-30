@@ -3,7 +3,7 @@ import * as actions from './user.actions';
 const initialState = {
     username: '',
     authorized: false,
-    roles: []
+    role: 'guest'
 };
 
 function user(state = initialState, action) {

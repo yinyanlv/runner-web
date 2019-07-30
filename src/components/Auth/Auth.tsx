@@ -6,7 +6,7 @@ import AppContext from '../../AppContext';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../store/user/user.actions';
 
-const notNeedValidateUrls = ['/login', '/register'];
+const notNeedLoginUrls = ['/login', '/register'];
 
 interface AuthProps extends RouteComponentProps, DispatchProp {
     logout: () => void;
@@ -47,15 +47,23 @@ class Auth extends React.PureComponent<AuthProps> {
 
     private _redirectRoute(props: any) {
 
-        const {history, location} = props;
-        const {pathname} = location;
+        const {history, user, location} = props;
+        const {pathname, state} = location;
 
-        if (!notNeedValidateUrls.includes(pathname)) {
+        if (user.role === 'guest') {  // 如果该用户未登录，访问无权限的页面时，重定向至登录页
+            if (!notNeedLoginUrls.includes(pathname)) {
+                history.push({
+                    pathname: '/login',
+                    state: {
+                        redirectUrl: pathname
+                    }
+                });
+            }
+        } else {  // 如果该用户已登录，访问无权限的页面时，重定向至redirectUrl或首页
+            const redirectUrl = state.redirectUrl ? state.redirectUrl : '/';
+
             history.push({
-                pathname: '/login',
-                state: {
-                    redirectUrl: pathname
-                }
+                pathname: redirectUrl
             });
         }
     }

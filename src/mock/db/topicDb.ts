@@ -9,6 +9,7 @@ const topicDb = {
         content: '这是内容',
         createBy: {
             avatarUrl: '/static/images/avatars/avatar.jpg',
+            userId: '1',
             username: 'admin'
         },
         createTime: '2019-11-11 11:11',
@@ -16,10 +17,12 @@ const topicDb = {
         viewCount: 200,
         lastCommentBy: {
             avatarUrl: '/static/images/avatars/avatar.jpg',
+            userId: '1',
             username: 'admin'
         },
         lastCommentTime: '2019-12-12 12:12',
         comments: [{
+            userId: '1',
             createBy: 'admin',
             createTime: '2019-12-12 12:12',
             content: '评论内容'
@@ -31,7 +34,7 @@ const topicDb = {
         categoryName: '精品',
         title: '这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题',
         createBy: {
-            url: '',
+            userId: '1',
             avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
@@ -39,7 +42,7 @@ const topicDb = {
         commentCount: 109,
         viewCount: 200,
         lastCommentBy: {
-            url: '',
+            userId: '1',
             avatarUrl: '/static/images/avatars/avatar.jpg',
             username: 'admin'
         },
@@ -56,7 +59,6 @@ mock.onGet(/\/api\/topic\/[a-zA-Z0-9]+/).reply((params) => {
 });
 
 mock.onPost('/api/topic/save').reply((params) => {
-
     return [200, {
         success: true
     }];

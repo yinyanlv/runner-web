@@ -88,7 +88,7 @@ class Comment extends React.PureComponent<CommentProps> {
                         <div className={"comments"}>
                             {
                                 item.comments.map((item, index) => {
-                                    return <Comment item={item} index={index} />;
+                                    return <Comment key={item.id} item={item} index={index} />;
                                 })
                             }
                         </div>

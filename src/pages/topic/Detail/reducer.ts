@@ -21,16 +21,19 @@ const initialState = {
     lastCommentBy: 'admin',
     lastCommentTime: '2018-11-11 11:11:11',
     comments: [{
+        id: '1',
         content: '### 写的不错',
         createBy: 'bugong',
         createTime: '2019-11-11 11:11:11',
         createUserAvatarUrl: '/static/images/avatars/avatar.jpg',
         comments: [{
+            id: '1',
             content: '### 写的不错',
             createBy: 'bugong',
             createTime: '2019-12-12 11:11:11',
             createUserAvatarUrl: '/static/images/avatars/avatar.jpg',
             comments: [{
+                id: '1',
                 content: '### 写的不错',
                 createBy: 'bugong',
                 createTime: '2019-12-12 11:11:11',

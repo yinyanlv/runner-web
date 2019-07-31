@@ -116,7 +116,11 @@ class Auth extends React.PureComponent<AuthProps> {
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
+                    const {history} = this.props;
+                    alert(err);
+                    history.push({
+                        pathname: '/login'
+                    });
                 });
         });
 

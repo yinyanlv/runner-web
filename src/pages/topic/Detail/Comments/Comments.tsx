@@ -21,7 +21,7 @@ class Comments extends React.PureComponent<CommentsProps> {
                 <div className="panel-content">
                     {
                         count ? items.map((item, index) => {
-                           return <Comment index={index} item={item} />;
+                           return <Comment key={item.id} index={index} item={item} />;
                         }) : (
                             <div className="no-data">
                                 暂无回复

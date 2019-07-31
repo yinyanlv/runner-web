@@ -96,7 +96,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                             return (
                                 <div className="topic" key={item.id}>
                                     <div className="avatar">
-                                        <Link to={item.createBy.url || ''}><img src={item.createBy.avatarUrl} alt={""} /></Link>
+                                        <Link to={'/user/' + item.createBy.userId}><img src={item.createBy.avatarUrl} alt={""} /></Link>
                                     </div>
                                     <div className="info">
                                         <dl>
@@ -106,7 +106,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                                             </dt>
                                             <dd>
                                                 <span className="item">
-                                                    <Link to={item.createBy.url}>{item.createBy.username}</Link>
+                                                    <Link to={'/user/' + item.createBy.userId}>{item.createBy.username}</Link>
                                                     发布于 <span className="datetime-ago">{item.createTime}</span>
                                                 </span>
                                                 <span className="item">
@@ -117,7 +117,7 @@ class PageHome extends React.PureComponent<PageHomeProps> {
                                                 </span>
                                                 <span className="item right">
                                                     最后由
-                                                    <Link to={item.lastCommentBy.url}>
+                                                    <Link to={'/user/' + item.lastCommentBy.userId}>
                                                         <img
                                                             src={item.lastCommentBy.avatarUrl} alt={""} /> {item.lastCommentBy.username}
                                                     </Link>

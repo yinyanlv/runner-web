@@ -39,10 +39,10 @@ class JwtService extends EventEmitter {
 
         if (this._isAccessTokenValid(accessToken)) {
             this._setSession(accessToken);
-            this.emit('authorized', true)
+            this.emit('authorized', true);
         } else {
             this._clearSession();
-            this.emit('unauthorized', 'invalid access token!')
+            this.emit('unauthorized', 'invalid access token!');
         }
     }
 

@@ -1,7 +1,7 @@
 import React, {RefObject} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, withRouter, RouteComponentProps} from 'react-router-dom';
 import Formsy from 'formsy-react';
 import clsx from 'clsx';
 import './Login.scss';
@@ -9,7 +9,7 @@ import {Crumbs} from '../../components/Crumbs';
 import {Input} from '../../components/Input';
 import * as actions from './actions';
 
-interface LoginProps {
+interface LoginProps extends RouteComponentProps {
     login: any;
     submitLogin: any;
     setError: any;
@@ -63,7 +63,10 @@ class PageLogin extends React.PureComponent<LoginProps> {
     };
 
     submit = (params: any) => {
-        this.props.submitLogin(params);
+        this.props.submitLogin(params, {
+            location: this.props.location,
+            history: this.props.history
+        });
     };
 
     render() {
@@ -155,4 +158,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageLogin);
+export default withRouter<any>(connect(mapStateToProps, mapDispatchToProps)(PageLogin));

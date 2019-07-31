@@ -76,19 +76,10 @@ class Auth extends React.PureComponent<AuthProps> {
 
     private _redirectRoute(props: any) {
         const {history, user, location} = props;
-        const {pathname, search, hash, state} = location;
+        const {pathname, search, hash} = location;
 
-        if (user.authorized) {  // 如果该用户已登录，访问无权限的页面时，重定向至redirectPathname或首页
-            const redirectPathname = state ? state.redirectPathname : '/';
-            const redirectSearch = state ? state.redirectSearch : '';
-            const redirectHash = state ? state.redirectHash : '';
-console.log(user);
-console.log(state);
-            history.push({
-                pathname: redirectPathname,
-                search: redirectSearch,
-                hash: redirectHash
-            });
+        if (user.authorized) {  // 如果该用户已登录，访问无权限的页面时，重定向至之前访问的页面
+            history.goBack();
         } else {  // 如果该用户未登录，访问无权限的页面时，重定向至登录页
             history.push({
                 pathname: '/login',

@@ -1,12 +1,11 @@
 import jwtService from '../../services/jwtService';
-import history from '../../history';
 import {USER_SET_USER_DATA} from '../../store/user/user.actions';
 
 export const LOGIN_LOGINING = 'login:logining';
 export const LOGIN_SUCCESS = 'login:success';
 export const LOGIN_ERROR = 'login:error';
 
-export function submitLogin({username, password}) {
+export function submitLogin({username, password}, {location, history}) {
 
     return (dispatch) => {
 
@@ -34,7 +33,23 @@ export function submitLogin({username, password}) {
                     type: LOGIN_SUCCESS
                 });
 
-                history.push('/');
+                const {state} = location;
+
+                let pathname = '/';
+                let search = '';
+                let hash = '';
+
+                if (state) {
+                    pathname = state.redirectPathname ? state.redirectPathname : '/';
+                    search = state.redirectSearch ? state.redirectSearch : '';
+                    hash = state.redirectHash ? state.redirectHash : '';
+                }
+
+                history.push({
+                    pathname,
+                    search,
+                    hash
+                });
             })
             .catch((err) => {
                 dispatch({

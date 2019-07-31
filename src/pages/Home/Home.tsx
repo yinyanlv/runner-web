@@ -5,6 +5,7 @@ import {Link, RouteComponentProps} from 'react-router-dom';
 import {Pagination} from '../../components/Pagination';
 import {Tabs} from './Tabs';
 import * as actions from './actions';
+import {tabs} from './reducer';
 
 interface PageHomeProps extends RouteComponentProps{
     loadTopics: any;
@@ -20,8 +21,8 @@ class PageHome extends React.PureComponent<PageHomeProps> {
 
     componentDidMount(): void {
         const queryParams = new URLSearchParams(this.props.location.search);
-        const tab = queryParams.get('tab') || 'all';
-        const page = queryParams.get('page') || 1;
+        const tab = this._getQueryTab(queryParams);
+        const page = this._getQueryPage(queryParams);
 
         this.setState({
             tab,
@@ -32,6 +33,16 @@ class PageHome extends React.PureComponent<PageHomeProps> {
             tab,
             page
         });
+    }
+
+    private _getQueryTab(queryParams: URLSearchParams): string {
+        const tab = queryParams.get('tab') || 'all';
+        return tabs.some((item) => tab === item.id) ? tab : 'all';
+    }
+
+    private _getQueryPage(queryParams: URLSearchParams): number {
+        const page = queryParams.get('page') || '1';
+        return isNaN(parseInt(page)) ? 1 : parseInt(page);
     }
 
     handleClickTab = (item) => {

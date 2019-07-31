@@ -97,13 +97,23 @@ class Auth extends React.PureComponent<AuthProps> {
             jwtService.loginWithAccessToken()
                 .then((user) => {
                     const {history, location: {pathname, search, hash}} = this.props;
+                    const state = history.location.state;
 
                     this.props.setUserData(user);
-                    history.push({
-                        pathname,
-                        search,
-                        hash
-                    });
+
+                    if (state) {
+                        history.push({
+                            pathname: state.redirectPathname,
+                            search: state.redirectSearch,
+                            hash: state.redirectHash
+                        });
+                    } else {
+                        history.push({
+                            pathname,
+                            search,
+                            hash
+                        });
+                    }
                 })
                 .catch((err) => {
                     console.log(err);

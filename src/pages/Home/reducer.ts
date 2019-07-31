@@ -1,27 +1,29 @@
 import * as actions from './actions';
 
+export const tabs = [{
+    id: 'all',
+    text: '全部',
+    isActive: true,
+    url: ''
+}, {
+    id: 'ask',
+    text: '问答',
+    isActive: false,
+    url: ''
+}, {
+    id: 'share',
+    text: '分享',
+    isActive: false,
+    url: ''
+}, {
+    id: 'job',
+    text: '招聘',
+    isActive: false,
+    url: ''
+}];
+
 const initialState = {
-    tabs: [{
-        id: 'all',
-        text: '全部',
-        isActive: true,
-        url: ''
-    }, {
-        id: 'ask',
-        text: '问答',
-        isActive: false,
-        url: ''
-    }, {
-        id: 'share',
-        text: '分享',
-        isActive: false,
-        url: ''
-    }, {
-        id: 'job',
-        text: '招聘',
-        isActive: false,
-        url: ''
-    }],
+    tabs,
     topics: [],
     paging: {
         total: 500,
@@ -54,7 +56,6 @@ function home(state = initialState, action: any) {
 }
 
 function getTabs(tabs, tabId){
-
     let result: any = [];
     tabs && tabs.forEach((item) => {
         if (tabId === item.id) {

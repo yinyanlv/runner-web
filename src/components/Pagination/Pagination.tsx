@@ -59,6 +59,10 @@ function buildPagination(paging: {
     let isLastPageDisabled = false;
     let pageList: any = [];
 
+    if (curPage > pageCount || curPage < 1) {
+        curPage = 1;
+    }
+
     if (pageCount < 6) {
         isShowPrevEllipsis = false;
         isShowNextEllipsis = false;

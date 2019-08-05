@@ -50,6 +50,8 @@
   },
   "devDependencies": {
     "@types/axios-mock-adapter": "^1.10.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "24.0.13",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/jwt-decode": "^2.2.1",
@@ -61,8 +63,12 @@
     "@types/react-redux": "^7.0.9",
     "@types/react-router-config": "^5.0.0",
     "@types/react-router-dom": "^4.3.3",
+    "@types/react-test-renderer": "^16.8.3",
     "@types/react-transition-group": "^2.9.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "node-sass": "^4.12.0",
+    "react-test-renderer": "^16.8.6",
     "typescript": "3.5.1"
   }
 }

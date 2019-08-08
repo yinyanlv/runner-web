@@ -10,6 +10,7 @@ import {Auth} from './components/Auth';
 import {Layout1} from './layouts/layout1';
 import {PageError} from './pages/Error';
 import {routes} from './layouts/layout1/routes';
+import {unstable_track as track} from 'schedule/tracking';
 
 class App extends PureComponent {
 
@@ -26,10 +27,12 @@ class App extends PureComponent {
     }
 
     handleResize = () => {
-
-        this.setState({
-            isMobile: this.isMobile()
-        })
+        track('App resize', performance.now(), () => {
+            console.log(111);
+            this.setState({
+                isMobile: this.isMobile()
+            });
+        });
     };
 
     isMobile() {

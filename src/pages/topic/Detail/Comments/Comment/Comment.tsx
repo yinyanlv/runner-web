@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {MdEditor} from '../../../../../components/MdEditor';
 import {MdView} from '../../../../../components/MdView';
+import {unstable_track as track} from 'schedule/tracking';
 
 interface CommentProps {
     item: any;
@@ -16,9 +17,10 @@ class Comment extends React.PureComponent<CommentProps> {
     };
 
     handleChange = (value) => {
-
-        this.setState({
-            value
+        track('test comment', performance.now(), () => {
+            this.setState({
+                value
+            });
         });
     };
 

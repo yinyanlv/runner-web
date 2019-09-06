@@ -1,15 +1,87 @@
 @import "src/styles/scss/sdk/index";
 
 .comment {
+  padding: 1rem;
+  position: relative;
+
+  &:before{
+    content: '';
+    position: absolute;
+    width: 1px;
+    background: $lighter-bd-color;
+    top: 5rem;
+    left: 2.5rem;
+    bottom: 1rem;
+  }
 
   .comments{
-    padding: 2.5rem 0 1rem 2.25rem;
-    margin: -1.5rem 0 -.6rem 1.25rem;
-    -webkit-box-shadow: -1px 0 0 rgba(34,36,38,.15);
-    box-shadow: -1px 0 0 rgba(34,36,38,.15);
+    padding: 1rem 0 1rem 1rem;
+    margin-left: 1.5rem;
 
     .comment{
       padding-right: 0;
     }
+  }
+
+  &.highlight {
+    background: $comment-highlight-bg-color;
+  }
+
+  .avatar {
+    width: 3rem;
+    height: 3rem;
+    @include borderRadius(.3rem);
+    float: left;
+
+    img {
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+      @include borderRadius(.3rem);
+    }
+  }
+
+  .info {
+    padding-left: 4rem;
+
+    dt {
+      overflow: hidden;
+      font-size: 1.2rem;
+      color: $theme-color;
+      line-height: 1.8rem;
+
+      .comment-info {
+        float: left;
+      }
+
+      .username {
+        color: $lighter-font-color;
+        font-weight: bold;
+      }
+
+      .num {
+        padding: 0 0.1rem;
+      }
+    }
+
+    .operator {
+      margin-top: 1rem;
+
+      .btn {
+        color: $theme-color;
+        padding: 0 0.4rem;
+      }
+    }
+
+    dd {
+      margin-top: .6rem;
+
+      &.editor-wrapper-box {
+      }
+    }
+  }
+
+  .editor-wrapper {
+    padding: 1rem 0 0;
   }
 }

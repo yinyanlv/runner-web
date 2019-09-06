@@ -54,6 +54,11 @@ class Comment extends React.PureComponent<CommentProps> {
                                 • <span className="datetime-ago">{item.createTime}</span>
                                 <span>• <span className="tag">作者</span></span>
                             </div>
+                        </dt>
+                        <dd>
+                            <div className="markdown-body">
+                                <MdView data={item.content} />
+                            </div>
                             <div className="operator operator-comment">
                                 <span className="btn btn-edit"><i className="fa fa-edit"></i> 编辑</span>
                                 <span className="btn btn-delete"><i className="fa fa-trash"></i> 删除</span>
@@ -61,11 +66,6 @@ class Comment extends React.PureComponent<CommentProps> {
                                     <i className="fa fa fa-mail-reply"></i>
                                     <span className="text"> 回复</span>
                                 </span>
-                            </div>
-                        </dt>
-                        <dd>
-                            <div className="markdown-body">
-                                <MdView data={item.content} />
                             </div>
                         </dd>
                         {

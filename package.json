@@ -69,7 +69,7 @@
     "@types/react-transition-group": "^2.9.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react-test-renderer": "^16.8.6",
     "schedule": "0.3.0",
     "typescript": "3.5.1"
